@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css" />
+		<style type="text/css">
+			.mui-content #mui-view-z .mui-table-view-cell span {
+				border-radius: 100%;
+				display: inline-block;
+				width: 36px;
+				height: 36px;
+				border: 1px solid #ccc;
+				overflow: hidden;
+				background: #fff;
+				text-align: center;
+				line-height: 36px;
+			}
+			
+			.mui-content #mui-view-z .mui-table-view-cell img {
+				height: 26px !important;
+				margin-top: 4px;
+			}
+			
+			#mui-view-z .mui-table-view-cell .mui-media.mui-col-xs-4 {
+				widows: 24.999333% !important;
+			}
+			
+			.mui-slider img {
+				height: 250px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav background_lv">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">友爱家园</h1>
+			<!--<a class="mui-icon mui-icon mui-icon-search mui-pull-right" style="color: #fff;"></a>-->
+		</header>
+		<div class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+			</div>
+		</div>
+		<div id="pullrefresh" class="mui-content" href_type="1">
+			<!--<div class="index_title_lv" style="text-align: center;color: #6C6C6C;">客服电话:<span id="mui-phone"> 18920862297</span> 联系人:<span id="mui-contacts"> 赵凤磊</span></div>-->
+			<ul id="mui-view-z" class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="news_mode.html">
+						<span class="mui-icon" style="background: #FEAF1D;"><img src="img/news3.png"></span>
+						<div class="mui-media-body">新闻时讯</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="news_mode.html">
+						<span class="mui-icon" style="background: #FE5E64;"><img src="img/zhishi2.png"></span>
+						<div class="mui-media-body">疾病知识</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="news_mode.html">
+						<span class="mui-icon" style="background: red;"><img src="img/yisheng2.png"></span>
+						<div class="mui-media-body">看病指南</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="news_mode.html">
+						<span class="mui-icon" style="background: #29A2FF;"><img src="img/laoshi2.png"></span>
+						<div class="mui-media-body">名医讲堂</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="news_mode.html">
+						<span class="mui-icon" style="background: #EE5E07;"><img src="img/work2.png"></span>
+						<div class="mui-media-body">工作分享</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="news_mode.html">
+						<span class="mui-icon" style="background: #F80683;"><img src="img/experience2.png"></span>
+						<div class="mui-media-body">经验交流</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="news_mode.html">
+						<span class="mui-icon" style="background: #FE5E64;"><img src="img/help2.png"></span>
+						<div class="mui-media-body">求助信息</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="news_mode.html">
+						<span class="mui-icon" style="background: #FF0000;"><img src="img/love2.png"></span>
+						<div class="mui-media-body">爱心捐赠</div>
+					</a>
+				</li>
+			</ul>
+			<div class="index_title_lv" style="text-align: center;color: #6C6C6C;">
+				<marquee>客服电话:<span id="mui-phone"> 18920862297</span> 联系人:
+					<span id="mui-contacts"> 赵凤磊</span></marquee>
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab background_lv">
+			<a class="mui-tab-item back_id_lv" href="index.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="news.html">
+				<span class="mui-icon mui-icon-compose"></span>
+				<span class="mui-tab-label">新闻</span>
+			</a>
+			<a class="mui-tab-item" href="shop.html">
+				<span class="mui-icon mui-icon-flag"></span>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="mui-tab-item" href="user.html">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+	</body>
+	<script>
+		$.ajax({
+			type: "post",
+			url: config.url + "HomePage/getAllActiveImg",
+			async: true,
+			timeout: 5000,
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			success: function(data) {
+				var html = "";
+				html += '<div class="mui-slider-item mui-slider-item-duplicate">'
+				html += '<a href="news_mode_content.html?' + data.obj[(data.obj.length - 1)].article_id + '"><img src="' + config2.url + data.obj[(data.obj.length - 1)].article_img + '" /></a>'
+				html += '</div>'
+				for(i = 0; i < data.obj.length; i++) {
+					html += '<div class="mui-slider-item">';
+					html += '<a href="news_mode_content.html?' + data.obj[i].article_id + '"><img src="' + config2.url + data.obj[i].article_img + '" /></a>';
+					html += '</div>';
+				}
+				html += '<div class="mui-slider-item mui-slider-item-duplicate">'
+				html += '<a href="news_mode_content.html?' + data.obj[0].article_id + '"><img src="' + config2.url + data.obj[0].article_img + '" /></a>'
+				html += '</div>'
+				$(".mui-slider-group.mui-slider-loop").html(html);
+				var oGallery = mui('.mui-slider');
+				oGallery.slider({
+					interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+				});
+			}
+		});
+	</script>
+
+</html>

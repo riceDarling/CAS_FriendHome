@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css" />
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav background_lv">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title"></h1>
+		</header>
+		<!--
+        	作者：1823228253@qq.com
+        	时间：2017-04-18
+        	描述：
+        -->
+		<div class="content_lv" style="margin-bottom: 50px; margin-top: 44px;">
+			<div class="news_content_lv" content_id="1">
+				<div class="width_ov_ss"></div>
+			</div>
+		</div>
+		<div class="pinglun_lv">
+			<input type="text" placeholder="请输入您想评论的内容" />
+			<a class="mui-icon mui-icon mui-icon-redo mui-pull-right" style="color: #fff; height: 40px; line-height: 40px; padding: 0px 3%;"></a>
+		</div>
+	</body>
+	<script>
+		var isCollect = "";
+		var isReport = "";
+		var isAssent = "";
+
+		function selectByPostId() {
+			$.ajax({
+				type: "post",
+				url: config.url + "assentCollect/selectByPostAndAccount",
+				async: true,
+				data: {
+					"postId": location.href.split("?")[1]
+				},
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: function(data) {
+					if(data.t != null) {
+						if(data.t.is_collect == 1) {
+							$(".mui-icon:eq(2) img").attr("src", "img/xing1.png");
+							$(".mui-icon:eq(2)  span").css("color", "#5C9932");
+						} else {
+							$(".mui-icon:eq(2) img").attr("src", "img/xing.png");
+							$(".mui-icon:eq(2)  span").css("color", "");
+						}
+
+						if(data.t.is_report == 1) {
+							$(".mui-icon:eq(3) img").attr("src", "img/jubao1.png");
+							$(".mui-icon:eq(3)  span").css("color", "#5C9932");
+						} else {
+							$(".mui-icon:eq(3) img").attr("src", "img/jubao.png");
+							$(".mui-icon:eq(3)  span").css("color", "");
+						}
+						if(data.t.is_assent == 1) {
+							$(".mui-icon:eq(1) img").attr("src", "img/zan1.png");
+							$(".mui-icon:eq(1)  span").css("color", "#5C9932");
+						} else {
+							$(".mui-icon:eq(1) img").attr("src", "img/zan.png");
+							$(".mui-icon:eq(1)  span").css("color", "");
+						}
+						isCollect = data.t.is_collect
+						isReport = data.t.is_report
+						isAssent = data.t.is_assent
+					}
+				}
+			});
+		}
+
+		$.ajax({
+			type: "post",
+			url: config.url + "HomePage/getArticleById",
+			async: true,
+			data: {
+				"id": location.href.split("?")[1]
+			},
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			success: function(data) {
+				if(data.msg == "成功") {
+					if(data.t.module == 7) {
+						var html = "";
+						html += "受助者账号：" + data.t.recipientAccount + "<br>";
+						html += "捐赠者账号：" + data.t.donorAccount + "<br>";
+						html += "捐赠者联系方式：" + data.t.donorContactWay + "<br>";
+						html += "捐赠物品名称：" + data.t.donationName + "<br>";
+						html += "捐赠物品数量：" + data.t.donationCount + "<br>";
+						html += "捐赠物品价值：" + data.t.donationValue + "<br>";
+						html += "捐赠物品金额：" + data.t.donationMoney + "<br>";
+						html += "捐赠物品总价值：" + data.t.donationTotalValue + "<br>";
+						html += "捐赠时间：" + data.t.donationTime + "<br>";
+						html += "备注：" + data.t.remark + "<br>";
+						$(".content_lv div[content_id=1] .width_ov_ss").append(html)
+					} else if(data.t.module == 6) {
+						var html = "";
+						html += "求助者账号：" + data.t.account + "<br>";
+						html += "求助者姓名：" + data.t.realName + "<br>";
+						html += "求助者电话：" + data.t.tel + "<br>";
+						html += "求助者地址：" + data.t.addr + "<br>";
+						html += "求助内容：";
+						$(".content_lv div[content_id=1] .width_ov_ss").append(html)
+					}
+
+					$("#header h1").text(data.t.title);
+					$(".content_lv div[content_id=1]").prepend('<div class="title_lv_a">' + data.t.title.replace(/script/ig, '*').replace(/style/ig, '*') + '</div>');
+					if(data.t.photos == "" || data.t.photos == null) {
+						if(data.t.content != "" || data.t.content != null) {
+							$(".content_lv div[content_id=1] .width_ov_ss").append(data.t.content.replace(/script/ig, '*').replace(/style/ig, '*').replace(/傻逼/ig, '*').replace(/傻狗/ig, '*').replace(/狗逼/ig, '*').replace(/傻逼/ig, '*').replace(/操你妈/ig, '*'));
+						}
+					} else {
+						if(data.t.content != "" || data.t.content != null) {
+							$(".content_lv div[content_id=1] .width_ov_ss").append(data.t.content.replace(/script/ig, '*').replace(/style/ig, '*').replace(/傻逼/ig, '*').replace(/傻狗/ig, '*').replace(/狗逼/ig, '*').replace(/傻逼/ig, '*').replace(/操你妈/ig, '*') + '<img src=' + data.t.photos + '>');
+						}
+					}
+					var html = '<div class="content_lv_button">';
+					html += '<a class="mui-icon"><img src="img/zan.png"><span>点赞</span></a>';
+					html += '<a class="mui-icon"><img src="img/xing.png"><span>收藏</span></a>';
+					html += '<a class="mui-icon"><img src="img/jubao.png"><span>举报</span></a>';
+					html += '</div>';
+					$(".content_lv").append(html);
+					getRestoresByPostId();
+					selectByPostId()
+					$(".content_lv_button .mui-icon").on("tap", function() {
+						passworld_lv_aaa();
+						var data_lv = "";
+						if($(this).index() == 0) {
+							if(isAssent == 0) {
+								isAssent = 1;
+							} else {
+								isAssent = 0;
+							}
+							data_lv = {
+								"postId": location.href.split("?")[1],
+								"isCollect": isCollect,
+								"isReport": isReport,
+								"isAssent": isAssent
+							}
+						} else if($(this).index() == "1") {
+							if(isCollect == 0) {
+								isCollect = 1;
+							} else {
+								isCollect = 0;
+							}
+							data_lv = {
+								"postId": location.href.split("?")[1],
+								"isCollect": isCollect,
+								"isReport": isReport,
+								"isAssent": isAssent
+							}
+						} else {
+							if(isReport == 0) {
+								isReport = 1;
+							} else {
+								isReport = 0;
+							}
+							data_lv = {
+								"postId": location.href.split("?")[1],
+								"isCollect": isCollect,
+								"isReport": isReport,
+								"isAssent": isAssent
+							}
+						};
+						if(data_lv != "") {
+							$.ajax({
+								type: "post",
+								url: config.url + "assentCollect/assentAndCollect",
+								data: data_lv,
+								async: true,
+								xhrFields: {
+									withCredentials: true
+								},
+								success: function(data) {
+									if(data.msg == "成功") {
+										selectByPostId();
+									}
+								}
+							});
+						}
+					});
+				}
+			}
+		});
+
+		function getRestoresByPostId() {
+			$.ajax({
+				type: "post",
+				url: config.url + "comment/getRestoresByPostId",
+				async: true,
+				data: {
+					"postId": location.href.split("?")[1]
+				},
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: function(data) {
+					if(data.msg == "成功") {
+						$(".content_lv ul[lv=good_lv]").remove();
+						var html_ul = '<ul lv="good_lv"></ul>';
+						$(".content_lv").append(html_ul);
+						for(var i = 0; i < data.obj.length; i++) {
+							var html = "";
+							html += '<li news_id_lv=' + data.obj[i].id + '>';
+							if(data.obj[i].photo != "LoveHome/upload/defaultPhoto.png") {
+								html += '<e><img src="' + data.obj[i].photo + '" /></e>';
+							} else {
+								html += '<e><img src="' + config2.url + data.obj[i].photo + '" /></e>';
+							}
+							html += '<div>';
+							html += '<span>' + data.obj[i].restoreName.replace(/script/ig, '*').replace(/style/ig, '*').replace(/傻逼/ig, '*').replace(/傻狗/ig, '*').replace(/狗逼/ig, '*').replace(/傻逼/ig, '*').replace(/操你妈/ig, '*').replace(/</ig, '*').replace(/>/ig, '*') + '</span>';
+							html += '<span>' + data.obj[i].restore_time.replace(/script/ig, '*').replace(/style/ig, '*').replace(/傻逼/ig, '*').replace(/傻狗/ig, '*').replace(/狗逼/ig, '*').replace(/傻逼/ig, '*').replace(/操你妈/ig, '*').replace(/</ig, '*').replace(/>/ig, '*') + '</span>';
+							html += '<span>' + data.obj[i].content.replace(/script/ig, '*').replace(/style/ig, '*').replace(/傻逼/ig, '*').replace(/傻狗/ig, '*').replace(/狗逼/ig, '*').replace(/傻逼/ig, '*').replace(/操你妈/ig, '*').replace(/</ig, '*').replace(/>/ig, '*') + '</span>';
+							html += '</div>';
+							html += '</li>';
+							$(".content_lv ul[lv=good_lv]").append(html);
+						}
+					}
+				}
+			});
+		}
+		$(document).on("tap", ".pinglun_lv a", function() {
+			mui.plusReady(function() {
+				if(plus.storage.getItem("account") == null || plus.storage.getItem("pwd") == null) {
+					var btnArray = ['确认'];
+					mui.confirm('您还没有登录，不能进行以下操作是否登录？', '提示', btnArray, function(e) {
+						location.href = "login.html";
+					})
+				} else {
+					if($(".pinglun_lv input").val() != "") {
+						$.ajax({
+							type: "post",
+							url: config.url + "comment/addRestore",
+							async: true,
+							data: {
+								"content": $(".pinglun_lv input").val(),
+								"postId": location.href.split("?")[1]
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								if(data.msg == "成功") {
+									alert("评论成功！");
+									$(".pinglun_lv input").val("");
+									getRestoresByPostId();
+								}
+							}
+						});
+					} else {
+						alert("评论内容不能为空！");
+					}
+				}
+			})
+
+		});
+		var this_show_lv = 1;
+		$(document).on("tap", "h1.mui-title", function() {
+			if(this_show_lv == 1) {
+				$(".title_lv_a").show();
+				this_show_lv = 2
+			} else {
+				$(".title_lv_a").hide();
+				this_show_lv = 1
+			}
+		})
+	</script>
+
+</html>

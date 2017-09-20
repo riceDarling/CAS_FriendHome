@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css" />
+		<style>
+			.mui-media-body {
+				display: block;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav background_lv">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title"></h1>
+		</header>
+		<div class="mui-content_lv mui-scroll-wrapper" id="pullrefresh">
+			<div class="mui-scroll">
+				<ul class="mui-table-view">
+					<li text="1" style="text-align: center; line-height: 42px;">正在加载...</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+
+	<script>
+		var gallery = mui('.mui-slider');
+		gallery.slider({
+			interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+		});
+
+		var it_i_lva = 0;
+		$(".mui-content_lv").height($(window).height() - 45);
+		if(decodeURI(location.href.split("?")[1]) != "undefined") {
+			$("#header h1").text(decodeURI(location.href.split("?")[1].split("&")[0]));
+		}
+		var module = location.href.split("?")[1].split("&")[1]
+		if(module > 3 && module != 7) {
+			$("#header").append('<a class="mui-icon mui-icon mui-icon mui-icon mui-icon-compose mui-pull-right" style="color: #fff;"></a>')
+		}
+		$("#header .mui-icon-compose").on("tap", function() {
+			location.href = "published.html?" + module
+		});
+		var scroll_Lv = 0;
+		$(".mui-content_lv").scroll(function() {
+			var $this = $(this),
+				viewH = $(this).height(),
+				contentH = $($this).get(0).scrollHeight,
+				scrollTop = $(this).scrollTop();
+			if(scrollTop / (contentH - viewH) >= 0.95) {
+				loading_lv_aa(scroll_Lv, scroll_Lv * 1 + 10 * 1);
+			}
+		});
+
+		function loading_lv_aa(e, q) {
+			if(decodeURI(location.href.split("?")[1].split("&")[0]) == "我的发表" || decodeURI(location.href.split("?")[1].split("&")[0]) == "我的收藏" || decodeURI(location.href.split("?")[1].split("&")[0]) == "我的点赞" || decodeURI(location.href.split("?")[1].split("&")[0]) == "我的捐赠" || decodeURI(location.href.split("?")[1].split("&")[0]) == "我的工作" || decodeURI(location.href.split("?")[1].split("&")[0]) == "我的求助") {
+				passworld_lv_aaa();
+				if(decodeURI(location.href.split("?")[1].split("&")[0]) == "我的发表") {
+					$.ajax({
+						type: "post",
+						url: config.url + "User/getArticleByAccountId",
+						async: true,
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							if(data.msg == "成功") {
+								if(data.obj.length > 0) {
+									$("li[text=1]").remove();
+								}
+								var html = "";
+								for(i = data.obj.length - 1 - e; i > data.obj.length - q; i--) {
+									if(i < data.obj.length) {
+										html = "";
+										html += '<li class="mui-table-view-cell mui-media">'
+										html += '<a href_lv="news_mode_content.html?' + data.obj[i].id + '">'
+										if(data.obj[i].photo != "LoveHome/upload/defaultPhoto.png") {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + data.obj[i].photo + '">';
+										} else {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + config2.url + data.obj[i].photo + '">';
+										}
+										html += '<div class="mui-media-body">'
+										html += data.obj[i].title
+										html += '<p class="mui-ellipsis" >' + data.obj[i].name + '</p>'
+										html += '<p class="mui-ellipsis" >上传时间：' + data.obj[i].postTime + '</p>'
+										html += '</div>'
+										html += '</a>'
+										html += '</li>'
+										$(".mui-table-view").append(html);
+									} else {
+										return false;
+									}
+								}
+							}
+						}
+					});
+				} else if(decodeURI(location.href.split("?")[1].split("&")[0]) == "我的收藏") {
+					$.ajax({
+						type: "post",
+						url: config.url + "User/getCollectByAccountId",
+						async: true,
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							if(data.msg == "成功") {
+								if(data.obj.length > 0) {
+									$("li[text=1]").remove();
+								}
+								var html = "";
+								for(i = data.obj.length - 1 - e; i > data.obj.length - q; i--) {
+									if(i < data.obj.length) {
+										html = "";
+										html += '<li class="mui-table-view-cell mui-media">'
+										html += '<a href_lv="news_mode_content.html?' + data.obj[i].id + '">'
+										if(data.obj[i].photo != "LoveHome/upload/defaultPhoto.png") {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + data.obj[i].photo + '">';
+										} else {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + config2.url + data.obj[i].photo + '">';
+										}
+										html += '<div class="mui-media-body">'
+										html += data.obj[i].title
+										html += '<p class="mui-ellipsis" >' + data.obj[i].name + '</p>'
+										html += '<p class="mui-ellipsis" >上传时间：' + data.obj[i].postTime + '</p>'
+										html += '</div>'
+										html += '</a>'
+										html += '</li>'
+										$(".mui-table-view").append(html);
+									} else {
+										return false;
+									}
+								}
+							}
+						}
+					});
+				} else if(decodeURI(location.href.split("?")[1].split("&")[0]) == "我的点赞") {
+					$.ajax({
+						type: "post",
+						url: config.url + "User/getArticleAssentByAccountId",
+						async: true,
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							if(data.msg == "成功") {
+								if(data.obj.length > 0) {
+									$("li[text=1]").remove();
+								}
+								var html = "";
+								for(i = data.obj.length - 1 - e; i > data.obj.length - q; i--) {
+									if(i < data.obj.length) {
+										html = "";
+										html += '<li class="mui-table-view-cell mui-media">'
+										html += '<a href_lv="news_mode_content.html?' + data.obj[i].id + '">'
+										if(data.obj[i].photo != "LoveHome/upload/defaultPhoto.png") {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + data.obj[i].photo + '">';
+										} else {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + config2.url + data.obj[i].photo + '">';
+										}
+										html += '<div class="mui-media-body">'
+										html += data.obj[i].title
+										html += '<p class="mui-ellipsis" >' + data.obj[i].name + '</p>'
+										html += '<p class="mui-ellipsis" >上传时间：' + data.obj[i].postTime + '</p>'
+										html += '</div>'
+										html += '</a>'
+										html += '</li>'
+										$(".mui-table-view").append(html);
+									} else {
+										return false;
+									}
+								}
+							}
+						}
+					});
+				} else {
+					/**/
+					$.ajax({
+						type: "post",
+						url: config.url + "HomePage/getMyByAccount",
+						async: true,
+						timeout: 5000,
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							if(data.msg == "成功") {
+								$("#header .mui-icon.mui-icon.mui-icon.mui-icon.mui-icon-compose.mui-pull-right").remove();
+								if(data.t.length > 0) {
+									$("li[text=1]").remove();
+								}
+								var html = "";
+								for(i = data.t.length - 1 - e; i > data.t.length - q; i--) {
+									if(i < data.t.length) {
+										html = "";
+										html += '<li class="mui-table-view-cell mui-media">'
+										html += '<a href_lv="news_mode_content.html?' + data.t[i].id + '">'
+										if(data.t[i].photo != "LoveHome/upload/defaultPhoto.png") {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + data.t[i].photo + '">';
+										} else {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + config2.url + data.t[i].photo + '">';
+										}
+										html += '<div class="mui-media-body">'
+										html += data.t[i].title
+										html += '<p class="mui-ellipsis" >' + data.t[i].name + '</p>'
+										html += '<p class="mui-ellipsis" >上传时间：' + data.t[i].postTime + '</p>'
+										html += '</div>'
+										html += '</a>'
+										html += '</li>'
+										$(".mui-table-view").append(html);
+									} else {
+										return false;
+									}
+								}
+							}
+						}
+					});
+				}
+			} else {
+				$.ajax({
+					type: "post",
+					url: config.url + "HomePage/getArticleByModule",
+					async: true,
+					data: {
+						"module": module
+					},
+					xhrFields: {
+						withCredentials: true
+					},
+					crossDomain: true,
+					success: function(data) {
+						if(data.msg == "成功") {
+							if(data.obj.length > 0) {
+								$("li[text=1]").remove();
+							}
+							if(it_i_lva == 0) {
+								it_i_lva = 1;
+								for(ieq = 0; ieq < data.obj.length; ieq++) {
+									if(data.obj[ieq].isTop == 1) {
+										html = "";
+										html += '<li class="mui-table-view-cell mui-media">'
+										html += '<a href_lv="news_mode_content.html?' + data.obj[ieq].id + '">'
+										if(data.obj[ieq].photo != "LoveHome/upload/defaultPhoto.png") {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + data.obj[ieq].photo + '">';
+										} else {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + config2.url + data.obj[ieq].photo + '">';
+										}
+										html += '<div class="mui-media-body">'
+										html += '<span style="color:red; ">' + data.obj[ieq].title + '</span>'
+										html += '<p class="mui-ellipsis" >' + data.obj[ieq].name + '</p>'
+										html += '<p class="mui-ellipsis" >上传时间：' + data.obj[ieq].postTime + '</p>'
+										html += '</div>'
+										html += '</a>'
+										html += '</li>'
+										$(".mui-table-view").append(html);
+									}
+								}
+							}
+							for(i = 0; i < data.obj.length - e - 1; i++) {
+								//for(i = data.obj.length - e - 1; i > data.obj.length - q; i--) {
+								if(data.obj[i].isTop == 0) {
+									if(i < data.obj.length) {
+										html = "";
+										html += '<li class="mui-table-view-cell mui-media">'
+										html += '<a href_lv="news_mode_content.html?' + data.obj[i].id + '">'
+										if(data.obj[i].photo != "LoveHome/upload/defaultPhoto.png") {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + data.obj[i].photo + '">';
+										} else {
+											html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + config2.url + data.obj[i].photo + '">';
+										}
+										html += '<div class="mui-media-body">'
+										html += data.obj[i].title
+										html += '<p class="mui-ellipsis" >' + data.obj[i].name + '</p>'
+										html += '<p class="mui-ellipsis" >上传时间：' + data.obj[i].postTime + '</p>'
+										html += '</div>'
+										html += '</a>'
+										html += '</li>'
+										$(".mui-table-view").append(html);
+									} else {
+										return false;
+									}
+								}
+							}
+						}
+					}
+				});
+
+			}
+			scroll_Lv = scroll_Lv * 1 + 10 * 1;
+		}
+		loading_lv_aa(0, 10);
+	</script>
+
+</html>

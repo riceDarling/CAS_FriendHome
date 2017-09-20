@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css" />
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav background_lv">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;margin-right: 6px;"></a>
+			<input type="text" placeholder="请输入搜索内容..." style="height: 32px; margin-top: 6px; width: 75%;" />
+			<a class="mui-icon mui-icon mui-icon-search mui-pull-right" style="color: #fff;"></a>
+		</header>
+		<!--
+        	作者：1823228253@qq.com
+        	时间：2017-04-18
+        	描述：
+       -->
+       	<div class="mui-content_lv">
+			<ul class="mui-table-view">
+
+			</ul>
+		</div>
+	</body>
+	<script>
+
+		$(document).on("tap", "#header .mui-pull-right", function() {
+		var title = $("#header input").val();
+			$.ajax({
+				type: "post",
+				url: config.url + "HomePage/getArticleByTitle",
+				async: true,
+				data: {
+					"title": title
+				},
+				success: function(data) {
+					if(data.msg == "成功") {
+						var html = "";
+						for(i = 0; i < data.obj.length; i++) {
+							html += '<li class="mui-table-view-cell mui-media">'
+							html += '<a href_lv="news_mode_content.html?' + data.obj[i].id + '">'
+							html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="img/546b12b859f58.jpg">'
+							html += '<div class="mui-media-body">'
+							html += data.obj[i].title
+							html += '<p class="mui-ellipsis" >' + data.obj[i].name + '</p>'
+							html += '<p class="mui-ellipsis" >上传时间：' + data.obj[i].postTime + '</p>'
+//							html += '<p class="mui-ellipsis" >' + data.obj[i].content + '</p>'
+							html += '</div>'
+							html += '</a>'
+							html += '</li>'
+						}
+						$(".mui-table-view").html(html)
+					}
+				}
+			});
+		});
+	</script>
+
+</html>

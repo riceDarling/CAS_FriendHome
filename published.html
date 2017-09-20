@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/jquery.form.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css" />
+	</head>
+	<style>
+		html,
+		body,
+		.content_lv_fabiao {
+			height: 100%;
+		}
+		
+		.content_lv_fabiao div {
+			display: inline-block;
+			overflow: hidden;
+			margin-right: 5px;
+		}
+		
+		.content_lv_fabiao div a {
+			display: block;
+		}
+		
+		.content_lv_fabiao textarea {
+			height: 80%;
+			border: none;
+			padding-top: 50px;
+		}
+		
+		#saveReportForm,
+		#saveReportForm2 {
+			display: none;
+		}
+	</style>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav background_lv">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">发表文章</h1>
+			<a class="mui-icon mui-icon mui-icon mui-icon-redo mui-pull-right" style="color: #fff;"></a>
+		</header>
+		<!--
+        	作者：1823228253@qq.com
+        	时间：2017-04-18
+        	描述：
+        -->
+		<div class="content_lv_fabiao">
+			<textarea placeholder="文章内容不能少于10个字符"></textarea>
+		</div>
+		<form id="saveReportForm" action="http://123.56.221.46:8080/FriendHome/HomePage/uploadImg" method="post" enctype="multipart/form-data" onsubmit="return saveReport();">
+			<input type="file" name="file" id="file" value="" />
+		</form>
+		<form id="saveReportForm2" action="http://123.56.221.46:8080/FriendHome/AppealInfo/uploadImg" method="post" enctype="multipart/form-data" onsubmit="return saveReport();">
+			<input type="file" name="file" id="file2" value="" />
+		</form>
+	</body>
+	<script>
+		passworld_lv_aaa();
+		$(".content_lv_fabiao").append("<div><a>+</a></div>");
+		var this_lva = $("#saveReportForm");
+		var this_lv = $("#file");
+		if(module == 7) {
+			this_lva = $("#saveReportForm2");
+			this_lv = $("#file2");
+		}
+		var this_index = "";
+
+		$(document).on("tap", ".content_lv_fabiao a", function() {
+			$(this_lv).click();
+		});
+
+		$(this_lv).change(function() {
+			saveReport()
+		});
+		var photo_lv = "";
+
+		function saveReport() {
+			// jquery 表单提交 
+			$(this_lva).ajaxSubmit({
+				async: true,
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: function(message) {
+					if(message.msg == "成功") {
+						$(".content_lv_fabiao div:eq(" + this_index + ") a").html("<img src=" + message.t + ">");
+						photo_lv = message.t;
+					}
+				}
+			})
+			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转 
+		}
+
+		var module = location.href.split("?")[1];
+		/*if(module == 6) {
+			$(".content_lv_fabiao div").remove();
+		}*/
+		$("header .mui-pull-right").on("tap", function() {
+			if(module == 6) {
+				mui.prompt('请输入文章标题：', '', '提示', ["确认"], function(e) {
+					if(e.value.length > 0) {
+						var json_name = "";
+						var json_tel = "";
+						var json_addr = "";
+						var json_title = e.value;
+						$.ajax({
+							type: "post",
+							url: config.url + "User/getUserByAccountId",
+							async: true,
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								if(data.msg == "成功") {
+									if(data.t.type == 0) {
+										json_name = data.t.name;
+										json_tel = data.t.tel;
+										json_addr = data.t.addr;
+										json_photos = data.t.photos;
+										if(json_name != "" && json_tel != "" && json_addr != "" && json_photos != "") {
+											if($(".content_lv_fabiao textarea").val().length > 10) {
+												publishAppealInfo(json_name, json_tel, json_addr, json_title)
+											} else {
+												alert("文章内容不能少于10个字符！请输入文章内容！");
+											}
+										} else {
+
+											alert("为了方便我们审核，请务必完善个人信息，并在个人信息的个人图片一项中上传身份证图片，以便增加求助信息的真实可靠性。");
+											mui.alert("请完善个人信息！", function(e) {
+												if(e.index == 0) {
+													location.href = "user_add.html"
+												}
+											})
+										}
+									} else {
+										alert("抱歉您不是患者不能发表求助信息！");
+									}
+
+								} else {
+									alert(data.msg);
+								}
+							}
+						})
+					} else {
+						alert("文章标题不能为空！请输入文章标题！");
+					}
+				});
+
+				function publishAppealInfo(json_name, json_tel, json_addr, json_title) {
+					$.ajax({
+						type: "post",
+						url: config.url + "AppealInfo/publishAppealInfo",
+						async: true,
+						data: {
+							"realName": json_name,
+							"tel": json_tel,
+							"addr": json_addr,
+							"content": $(".content_lv_fabiao textarea").val(),
+							'appealImg': photo_lv,
+							"title": json_title
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							if(data.msg == "成功") {
+								mui.back();
+							}
+						}
+					});
+				}
+			} else {
+				mui.prompt('请输入文章标题：', '', '提示', ["确认"], function(e) {
+					if(e.value.length > 0 && $(".content_lv_fabiao textarea").val().length > 10) {
+						$.ajax({
+							type: "post",
+							url: config.url + "HomePage/insertArticle",
+							async: true,
+							data: {
+								"title": e.value,
+								"content": $(".content_lv_fabiao textarea").val(),
+								"module": module,
+								"photo": photo_lv
+							},
+							xhrFields: {
+								withCredentials: true
+							},
+							crossDomain: true,
+							success: function(data) {
+								if(data.msg == "成功") {
+									alert("发表成功!");
+									mui.back();
+								} else {
+									if(data.msg == undefined) {
+										alert("网络繁忙请稍后再试");
+									} else {
+										alert(data.msg);
+									}
+								}
+							}
+						});
+					} else if($(".content_lv_fabiao textarea").val().length < 10) {
+						alert("文章内容不能少于10个字符！请输入文章内容！");
+					} else {
+						alert("文章标题不能为空！请输入文章标题！");
+					}
+				});
+			}
+		});
+	</script>
+
+</html>

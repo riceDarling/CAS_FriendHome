@@ -1,0 +1,370 @@
+{
+	"index.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"img/Zhuoku124.jpg",
+			"img/546b12b859f58.jpg",
+			"news.html",
+			"shop.html",
+			"img/��.png",
+			"img/\u0011�B�.png",
+			"img/�� (1).png",
+			"img/;\u001f.png",
+			"img/1�.png",
+			"img/��A.png",
+			"img/\n �.png",
+			"img/\u0001\b.png",
+			"img/news.png",
+			"img/zhishi.png",
+			"img/yisheng.png",
+			"img/laoshi.png",
+			"img/work.png",
+			"img/love.png",
+			"img/help.png",
+			"img/experience.png",
+			"user.html",
+			"img/\n �.png",
+			"news_mode.html",
+			"search.html",
+			"news_mode_content.html",
+			"img/help2.png",
+			"img/work2.png",
+			"img/news3.png",
+			"img/love2.png",
+			"img/yisheng2.png",
+			"img/experience2.png",
+			"img/zhishi2.png",
+			"img/laoshi2.png",
+			"mui_news_mode.html",
+			"mui_communication.html"
+		],
+		"refer": [
+			"news.html",
+			"shop.html",
+			"news_mode.html",
+			"user.html",
+			"search.html",
+			"news_mode_content.html",
+			"mui_news_mode.html",
+			"mui_communication.html"
+		]
+	},
+	"news.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"shop.html",
+			"index.html",
+			"user.html",
+			"img/546b12b859f58.jpg",
+			"search.html",
+			"news_mode_content.html"
+		],
+		"refer": [
+			"shop.html",
+			"index.html",
+			"user.html",
+			"search.html",
+			"news_mode_content.html"
+		]
+	},
+	"shop.html": {
+		"refer": [
+			"user.html",
+			"index.html",
+			"news.html",
+			"service.html",
+			"shopsa.html"
+		],
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"user.html",
+			"img/546b12b859f58.jpg",
+			"index.html",
+			"news.html",
+			"service.html"
+		]
+	},
+	"user.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"index.html",
+			"news.html",
+			"shop.html",
+			"/css/mui.min.css",
+			"css/feedback.css",
+			"js/feedback.js",
+			"js/mui.view.js",
+			"img/help.png",
+			"news_mode.html",
+			"user.html",
+			"user_add.html",
+			"login.html",
+			"password.html"
+		],
+		"refer": [
+			"index.html",
+			"news.html",
+			"shop.html",
+			"login.html",
+			"news_mode.html",
+			"user_add.html",
+			"password.html"
+		]
+	},
+	"news_mode.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"img/546b12b859f58.jpg",
+			"news_mode_content.html",
+			"user.html",
+			"index.html",
+			"index_youke1.html",
+			"published.html",
+			"mui_news_mode.html"
+		],
+		"refer": [
+			"news_mode_content.html",
+			"published.html",
+			"user.html",
+			"index.html",
+			"index_youke1.html",
+			"mui_news_mode.html"
+		]
+	},
+	"service.html": {
+		"resources": [
+			"shop.html",
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"shop.html"
+		]
+	},
+	"login.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"reg.html",
+			"fonts/mui.ttf",
+			"index.html",
+			"index_youke1.html"
+		],
+		"refer": [
+			"index.html",
+			"reg.html",
+			"index_youke1.html"
+		]
+	},
+	"reg.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"login.html"
+		],
+		"refer": [
+			"login.html"
+		]
+	},
+	"search.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"news.html",
+			"index.html"
+		],
+		"refer": [
+			"news.html",
+			"index.html"
+		]
+	},
+	"news_mode_content.html": {
+		"resources": [
+			"news_mode.html",
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"img/love.png",
+			"img/546b12b859f58.jpg",
+			"img/xing.png",
+			"img/zan1.png",
+			"img/zan.png",
+			"img/jubao.png",
+			"login.html",
+			"news.html",
+			"index.html"
+		],
+		"refer": [
+			"news_mode.html",
+			"news_mode_content2.html",
+			"login.html",
+			"news.html",
+			"index.html"
+		]
+	},
+	"published.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"js/jquery.form.js",
+			"news_mode.html"
+		],
+		"refer": [
+			"news_mode.html"
+		]
+	},
+	"shopsa.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js"
+		],
+		"refer": []
+	},
+	"news_mode_content2.html": {
+		"resources": [
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"img/546b12b859f58.jpg"
+		],
+		"refer": []
+	},
+	"user_add.html": {
+		"resources": [
+			"js/mui.picker.min.js",
+			"css/mui.picker.min.css",
+			"js/jquery.form.js",
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"img/help.png",
+			"user_add.html",
+			"user.html"
+		],
+		"refer": [
+			"user.html"
+		]
+	},
+	"index_youke1.html": {
+		"resources": [
+			"img/news.png",
+			"index.html",
+			"js/common.js",
+			"img/zhishi.png",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"img/laoshi.png",
+			"img/yisheng.png",
+			"css/mui.min.css",
+			"img/work.png",
+			"js/jquery-2.1.0.js",
+			"img/love.png",
+			"img/help.png",
+			"img/experience.png",
+			"news_mode.html",
+			"user.html",
+			"news.html"
+		],
+		"refer": [
+			"index.html",
+			"news_mode.html",
+			"user.html",
+			"news.html"
+		]
+	},
+	"password.html": {
+		"resources": [
+			"img/1212312.png",
+			"user.html"
+		],
+		"refer": [
+			"user.html"
+		]
+	},
+	"mui_news_mode.html": {
+		"resources": [
+			"news_mode.html",
+			"index.html",
+			"news.html"
+		],
+		"refer": [
+			"news_mode.html",
+			"index.html",
+			"news.html"
+		]
+	},
+	"mui_communication.html": {
+		"resources": [
+			"index.html",
+			"js/common.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/jquery-2.1.0.js",
+			"news.html"
+		],
+		"refer": [
+			"index.html",
+			"news.html"
+		]
+	}
+}

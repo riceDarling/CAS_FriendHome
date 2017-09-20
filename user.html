@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css" />
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav background_lv">
+			<h1 class="mui-title">个人</h1>
+		</header>
+		<!--
+        	作者：1823228253@qq.com
+        	时间：2017-04-18
+        	描述：
+        -->
+		<div class="mui-content" style="margin-top: 44px;">
+			<ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell mui-media">
+					<a class="mui-navigate-right">
+						<img class="mui-media-object mui-pull-left" src="img/help.png">
+						<div class="mui-media-body click_lv_a">
+							<span>昵称</span>
+							<p class='mui-ellipsis'>手机号码</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view" style="margin-top: 20px;">
+				<li class="mui-table-view-cell" type_lv_user_id="1">
+					<a class="mui-navigate-right">
+						我的发表
+					</a>
+				</li>
+				<li class="mui-table-view-cell" type_lv_user_id="2">
+					<a class="mui-navigate-right">
+						我的收藏
+					</a>
+				</li>
+				<li class="mui-table-view-cell" type_lv_user_id="3">
+					<a class="mui-navigate-right">
+						我的点赞
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="password.html" class="mui-navigate-right">
+						联系我们
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="tel:18920862297" class="mui-navigate-right">
+						忘记密码
+					</a>
+				</li>
+				<li class="mui-table-view-cell" type_lv_user_id="6">
+					<a class="mui-navigate-right">
+						我的积分：
+					</a>
+				</li>
+				<li class="mui-table-view-cell" type_lv_user_id="7">
+					<a class="mui-navigate-right">
+						当前版本：1.0.6
+					</a>
+				</li>
+				<!--<li class="mui-table-view-cell" type_lv_user_id="5">
+					<a class="mui-navigate-right">
+						是否匿名：否
+					</a>
+				</li>-->
+			</ul>
+			<div class="mui-content-padded" style="margin-bottom: 80px;">
+				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary" style="background: #5c9932; border: none; margin: 30px 0px; padding: 10px 0px;">退出登录</button>
+			</div>
+		</div>
+		<!--
+        	作者：1823228253@qq.com
+        	时间：2017-04-18
+        	描述：
+        -->
+		<nav class="mui-bar mui-bar-tab background_lv">
+			<a class="mui-tab-item" href="index.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="news.html">
+				<span class="mui-icon mui-icon-compose"></span>
+				<span class="mui-tab-label">新闻</span>
+			</a>
+			<a class="mui-tab-item" href="shop.html">
+				<span class="mui-icon mui-icon-flag"></span>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="mui-tab-item back_id_lv" href="user.html">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+	</body>
+
+	<script>
+		mui.plusReady(function() {
+			if(plus.storage.getItem("account") == null || plus.storage.getItem("pwd") == null) {
+				$("#reg").text("登录");
+			}
+		})
+
+		var first = null;
+		mui.back = function() {
+			//首次按键，提示‘再按一次退出应用’
+			if(!first) {
+				first = new Date().getTime();
+				mui.toast('再按一次退出应用');
+				setTimeout(function() {
+					first = null;
+				}, 1000);
+			} else {
+				if(new Date().getTime() - first < 1000) {
+					plus.runtime.quit();
+				}
+			}
+
+		};
+
+		function getUserByAccountId() {
+			$.ajax({
+				type: "post",
+				url: config.url + "User/getUserByAccountId",
+				async: true,
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: function(data) {
+					if(data.msg == "成功") {
+						var html = "";
+						html += '<li class="mui-table-view-cell" type_lv_user_id="4">';
+						html += '<a class="mui-navigate-right">';
+						if(data.t.type == 0) {
+							html += '我的求助';
+							html += '</a>';
+							html += '</li>';
+							$("#header h1").text("患者");
+							$(".mui-table-view:eq(1)").prepend(html);
+						} else if(data.t.type == 1) {
+							html += '我的工作';
+							html += '</a>';
+							html += '</li>';
+							$("#header h1").text("志愿者");
+							$(".mui-table-view:eq(1)").prepend(html);
+						} else {
+							html += '我的捐赠';
+							html += '</a>';
+							html += '</li>';
+							$("#header h1").text("社会组织");
+							$(".mui-table-view:eq(1)").prepend(html);
+						}
+						if(data.t.photo != null) {
+							if(data.t.photo != "LoveHome/upload/defaultPhoto.png") {
+								$(".mui-table-view img").attr("src", data.t.photo);
+							} else {
+								$(".mui-table-view img").attr("src", config2.url + data.t.photo);
+							}
+							$(".mui-table-view .mui-media-body span").text(data.t.realName)
+							if(data.t.tel != 18322556666) {
+								$(".mui-table-view .mui-media-body p").text(data.t.tel);
+							}
+						}
+						$(".mui-table-view li[type_lv_user_id=6] a").text("我的积分：" + data.t.integral);
+					}
+				}
+			});
+		}
+
+		getUserByAccountId()
+
+		$("#reg").on("tap", function() {
+			$.ajax({
+				type: "post",
+				url: config.url + "Account/exit",
+				async: true,
+				timeout: 5000,
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: function(data) {
+					mui.plusReady(function() {
+						plus.storage.removeItem("account");
+						plus.storage.removeItem("pwd");
+					})
+					location.href = "login.html?1";
+				}
+			});
+		});
+
+		$(".click_lv_a").on("click", function() {
+			var btnArray = ['否', '是'];
+			mui.confirm('是否编辑个人信息？', '提示', btnArray, function(e) {
+				if(e.index == 1) {
+					location.href = "user_add.html";
+				}
+			})
+		});
+
+		$(document).on("tap", ".mui-table-view li", function() {
+			if($(this).attr("type_lv_user_id") < 5) {
+				location.href = "news_mode.html" + "?" + $(this).children("a").text() + "&" + $(this).attr("type_lv_user_id");
+			}
+		});
+	</script>
+
+</html>

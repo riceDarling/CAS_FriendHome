@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css" />
+	</head>
+	<style>
+		.dianzan {
+			background: #d8f3c6;
+			color: #666;
+			position: absolute;
+			right: 10px;
+			overflow: hidden;
+			border-radius: 10px;
+			font-size: 13px;
+			padding: 2px;
+		}
+		
+		.header_nav {
+			overflow: hidden;
+		}
+		
+		.header_nav .span {
+			background: #d8f3c6;
+			color: #5c9932;
+		}
+	</style>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav background_lv">
+			<!--<h1 class="mui-title">新闻</h1>-->
+			<div class="header_nav">
+				<span class="span">最新</span>
+				<span>热门</span>
+				<div style="clear: both;"></div>
+			</div>
+		</header>
+		<!--
+        	作者：1823228253@qq.com
+        	时间：2017-04-18
+        	描述：
+        -->
+		<div class="mui-content_lv" style="margin-bottom: 50px;">
+			<ul class="mui-table-view">
+				<li text="1" style="text-align: center; line-height: 42px;">正在加载...</li>
+			</ul>
+		</div>
+		<!--
+        	作者：1823228253@qq.com
+        	时间：2017-04-18
+        	描述：
+        -->
+		<nav class="mui-bar mui-bar-tab background_lv">
+			<a class="mui-tab-item" href="index.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item back_id_lv" href="news.html">
+				<span class="mui-icon mui-icon-compose"></span>
+				<span class="mui-tab-label">新闻</span>
+			</a>
+			<a class="mui-tab-item" href="shop.html">
+				<span class="mui-icon mui-icon-flag"></span>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="mui-tab-item" href="user.html">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+	</body>
+
+	<script>
+		$(".header_nav span").on("tap", function() {
+			$(".header_nav span").attr("class", "");
+			$(this).attr("class", "span");
+		})
+		$(".mui-content_lv").height($(window).height() - 95);
+		var first = null;
+		mui.back = function() {
+			//首次按键，提示‘再按一次退出应用’
+			if(!first) {
+				first = new Date().getTime();
+				mui.toast('再按一次退出应用');
+				setTimeout(function() {
+					first = null;
+				}, 1000);
+			} else {
+				if(new Date().getTime() - first < 1000) {
+					plus.runtime.quit();
+				}
+			}
+
+		};
+		var this_mode = 0;
+		$(".header_nav span").on("tap", function() {
+			this_mode = $(this).index();
+			$(".mui-table-view").html('<li text="1" style="text-align: center; line-height: 42px;">正在加载...</li>');
+			news_lv_top(0, 10);
+		});
+		var scroll_Lv = 0;
+		$(".mui-content_lv").scroll(function() {
+			var $this = $(this),
+				viewH = $(this).height(),
+				contentH = $($this).get(0).scrollHeight,
+				scrollTop = $(this).scrollTop();
+			if(scrollTop / (contentH - viewH) >= 0.95) {
+				news_lv_top(scroll_Lv, scroll_Lv * 1 + 10 * 1);
+			}
+		});
+
+		function news_lv_top(e, q) {
+			if(this_mode == 0) {
+				$.ajax({
+					type: "post",
+					url: config.url + "HomePage/getAllArticleInfos",
+					async: true,
+					xhrFields: {
+						withCredentials: true
+					},
+					crossDomain: true,
+					success: function(data) {
+						if(data.msg == "成功") {
+							if(data.obj.length > 0) {
+								$("li[text=1]").remove();
+							}
+							for(i = e; i < q; i++) {
+								if(i < data.obj.length) {
+									html = "";
+									html += '<li class="mui-table-view-cell mui-media">';
+									html += '<a href_lv="news_mode_content.html?' + data.obj[i].id + '">';
+									if(data.obj[i].photo != "LoveHome/upload/defaultPhoto.png") {
+										html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + data.obj[i].photo + '">';
+									} else {
+										html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + config2.url + data.obj[i].photo + '">';
+									}
+									html += '<div class="mui-media-body">';
+									html += data.obj[i].title;
+									html += '<p class="mui-ellipsis" >' + data.obj[i].name + '</p>';
+									html += '<p class="mui-ellipsis" >上传时间：' + data.obj[i].postTime + '</p>';
+									html += '</div>';
+									html += '</a>';
+									html += '</li>';
+									$(".mui-table-view").append(html);
+								} else {
+									return false;
+								}
+							}
+						}
+					}
+				});
+			} else {
+				$.ajax({
+					type: "post",
+					url: config.url + "HomePage/getAllArticleInfosByAssent",
+					async: true,
+					xhrFields: {
+						withCredentials: true
+					},
+					crossDomain: true,
+					success: function(data) {
+						if(data.msg == "成功") {
+							if(data.obj.length > 0) {
+								$("li[text=1]").remove();
+							}
+							for(i = e; i < q; i++) {
+								if(i < data.obj.length) {
+									html = "";
+									html += '<li class="mui-table-view-cell mui-media">'
+									html += '<a href_lv="news_mode_content.html?' + data.obj[i].post_id + '">'
+									if(data.obj[i].photo != "LoveHome/upload/defaultPhoto.png") {
+										html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + data.obj[i].photo + '">';
+									} else {
+										html += '<img class="mui-media-object mui-pull-left  mui-media-object_lv" src="' + config.url + data.obj[i].photo + '">';
+									}
+									html += '<div class="mui-media-body">'
+									html += data.obj[i].title
+									html += '<p class="mui-ellipsis" >' + data.obj[i].name + '</p>'
+									html += '<p class="mui-ellipsis" >上传时间：' + data.obj[i].postTime + '</p>'
+									html += '</div>'
+									html += '</a>'
+									html += '</li>'
+									$(".mui-table-view").append(html);
+								} else {
+									return false;
+								}
+							}
+						}
+					}
+				});
+			}
+			scroll_Lv = scroll_Lv * 1 + 10 * 1;
+		}
+		news_lv_top(0, 10)
+	</script>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css" />
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav background_lv">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">登录</h1>
+		</header>
+		<!--
+        	作者：1823228253@qq.com
+        	时间：2017-04-18
+        	描述：
+        -->
+		<div class="mui-content" style="margin-top:44px;">
+			<form id='login-form' class="mui-input-group">
+				<div class="mui-input-row" style="background: #d8f3c6;">
+					<label>账号</label>
+					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+				</div>
+				<div class="mui-input-row" style="background: #d8f3c6;">
+					<label>密码</label>
+					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+				</div>
+			</form>
+			<div class="mui-content-padded">
+				<button id='login' class="mui-btn mui-btn-block mui-btn-primary" style="background: #5c9932; margin: 30px 0px;border: none;">登录</button>
+				<div class="link-area" style="text-align: center;">
+					<a id='reg' style="color: #5c9932;" href="reg.html">注册账号</a> |
+					<a style="color: #5c9932;" href="tel:18920862297">忘记密码</a>
+				</div>
+			</div>
+			<div class="mui-content-padded oauth-area"></div>
+		</div>
+	</body>
+	<script>
+		mui.plusReady(function() {
+			if(plus.storage.getItem("account") != null || plus.storage.getItem("pwd") != null) {
+				$("#account").val(plus.storage.getItem("account"));
+				$("#password").val(plus.storage.getItem("pwd"));
+				if(location.href.split("_youke")[1].split(".")[0] != 1) {
+					$.ajax({
+						type: "post",
+						url: config.url + "Account/login",
+						async: true,
+						data: {
+							"account": $("#account").val(),
+							"pwd": $("#password").val(),
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						crossDomain: true,
+						success: function(data) {
+							if(data.msg == "成功") {
+								location.href = "index.html";
+							} else {
+								mui.alert(data.msg);
+							}
+						}
+					});
+				}
+
+			}
+		});
+
+		$(document).on("tap", "#login", function() {
+			if($("#account").val() != "" && $("#password").val() != "") {
+				$.ajax({
+					type: "post",
+					url: config.url + "Account/login",
+					async: true,
+					data: {
+						"account": $("#account").val(),
+						"pwd": $("#password").val(),
+					},
+					xhrFields: {
+						withCredentials: true
+					},
+					crossDomain: true,
+					success: function(data) {
+						if(data.msg == "成功") {
+							mui.plusReady(function() {
+								plus.storage.setItem("account", $("#account").val());
+								plus.storage.setItem("pwd", $("#password").val());
+							})
+							location.href = "index.html";
+						} else {
+							mui.alert(data.msg);
+						}
+					}
+				});
+			} else {
+				alert("账号密码不能为空");
+			}
+		});
+		var first = null;
+		mui.back = function() {
+			location.href = "index_youke1.html"
+		};
+	</script>
+
+</html>

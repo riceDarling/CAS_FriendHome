@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/mui.picker.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/jquery.form.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/mui.picker.min.css" />
+	</head>
+	<style>
+		#saveReportForm,
+		#saveReportForm2 {
+			display: none;
+		}
+	</style>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav background_lv">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">完善用户信息</h1>
+		</header>
+		<!--
+        	作者：1823228253@qq.com
+        	时间：2017-04-18
+        	描述：
+        -->
+		<div class="mui-content" style="margin-top: 44px;">
+			<ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell mui-media" src_id="0">
+					<img class="mui-media-object mui-pull-left" src="img/help.png">
+					<div class="mui-media-body">
+						<span>昵称</span>
+						<p class='mui-ellipsis'>手机号码</p>
+					</div>
+				</li>
+			</ul>
+			<ul class="mui-table-view ul_xinxi_lv" style="margin-top: 20px;">
+				<li class="mui-table-view-cell mui-media" src_id="1">
+					<img class="mui-media-object mui-pull-left" src="img/help.png">
+					<span>图片</span>
+					<p class='mui-ellipsis'>个人证件照片或是企业认证资料</p>
+				</li>
+			</ul>
+			<div class="mui-content-padded">
+				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary" style="background: #5c9932; border: none; margin: 30px 0px; padding: 10px 0px;">保存信息</button>
+			</div>
+		</div>
+		<!--
+        	作者：1823228253@qq.com
+        	时间：2017-04-18
+        	描述：
+        -->
+		<form id="saveReportForm" action="http://123.56.221.46:8080/FriendHome/Account/uploadImg" method="post" enctype="multipart/form-data" onsubmit="return saveReport();">
+			<input type="file" name="file" id="file" value="" />
+		</form>
+		<form id="saveReportForm2" action="http://123.56.221.46:8080/FriendHome/User/uploadImg" method="post" enctype="multipart/form-data" onsubmit="return saveReport();">
+			<input type="file" name="file" id="file2" value="" />
+		</form>
+		<input style="display: none;" data-options='{"type":"date","beginYear":1960,"endYear":2016}' class="btn mui-btn mui-btn-block" value="aa" />
+	</body>
+
+	<script>
+		var photos = "";
+		passworld_lv_aaa();
+		var sexsas = "";
+
+		$(document).on("tap", ".mui-table-view li[src_id]", function() {
+			if($(this).attr("src_id") == 1) {
+				$("#file2").click();
+			} else if($(this).attr("src_id") == 0) {
+				$("#file").click();
+			}
+		});
+
+		$("input[name=file]").change(function() {
+			saveReport($(this))
+		});
+		var photo_lv = "";
+
+		function saveReport(thisa) {
+			if($(thisa).attr("id") == "file") {
+				// jquery 表单提交 
+				$("#saveReportForm").ajaxSubmit({
+					async: true,
+					xhrFields: {
+						withCredentials: true
+					},
+					crossDomain: true,
+					success: function(message) {
+						if(message.msg == "成功") {
+							$(".mui-table-view li[src_id=0] img").attr("src", message.t);
+						}
+					}
+				})
+			} else {
+				// jquery 表单提交 
+				$("#saveReportForm2").ajaxSubmit({
+					async: true,
+					xhrFields: {
+						withCredentials: true
+					},
+					crossDomain: true,
+					success: function(message) {
+						if(message.msg == "成功") {
+							photos = message.t;
+							$(".mui-table-view li[src_id=1] img").attr("src", message.t);
+						}
+					}
+				})
+			}
+			return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转 
+		}
+		var data = {
+			name: "",
+			sexs: "",
+			birthTime: "",
+			addr: "",
+			qq: "",
+			wechat: "",
+			workAddr: "",
+			school: "",
+			field: "",
+			sickness: "",
+			education: "",
+			capital: "",
+			scope: "",
+			organization: "",
+			tel: ""
+		}
+		var a_lv_a = "";
+
+		function getUserByAccountId() {
+			$.ajax({
+				type: "post",
+				url: config.url + "User/getUserByAccountId",
+				async: true,
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: function(data) {
+					if(data.msg == "成功") {
+						a_lv_a = data.t.type;
+						if(data.t.photo != "LoveHome/upload/defaultPhoto.png") {
+							$(".mui-table-view li[src_id=0] img").attr("src", data.t.photo);
+						} else {
+							$(".mui-table-view li[src_id=0] img").attr("src", config2.url + data.t.photo);
+						}
+
+						if(data.t.photos != "") {
+							$(".mui-table-view li[src_id=1] img").attr("src", data.t.photos);
+						} else {
+							$(".mui-table-view li[src_id=1] img").attr("src", "img/help.png");
+						}
+						if(data.t.name != "") {
+							$(".mui-table-view .mui-media-body span").text(data.t.realName);
+						}
+						if(data.t.tel != "") {
+							$(".mui-table-view .mui-media-body p").text(data.t.tel);
+						}
+						var html = "";
+						var sex = ""
+						if(data.t.sex == 0) {
+							sex = "女"
+						} else {
+							sex = "男"
+						}
+						if(data.t.type == 0) {
+							for(i = 0; i < 10; i++) {
+								html += '<li class="mui-table-view-cell"><a class="mui-navigate-right"></a></li>';
+							}
+							$(".ul_xinxi_lv").append(html)
+							$(".ul_xinxi_lv li a:eq(0)").text("姓名：" + data.t.name);
+							$(".ul_xinxi_lv li a:eq(1)").text("性别：" + sex);
+							if(data.t.birth_time == null) {
+								$(".ul_xinxi_lv li a:eq(2)").text("生日：" + data.t.birth_time);
+							} else {
+								$(".ul_xinxi_lv li a:eq(2)").text("生日：" + data.t.birth_time.split(" ")[0]);
+							}
+							$(".ul_xinxi_lv li a:eq(3)").text("身份证：" + data.t.idCard);
+							$(".ul_xinxi_lv li a:eq(4)").text("所患病种：" + data.t.sickness);
+							$(".ul_xinxi_lv li a:eq(5)").text("住址：" + data.t.addr);
+							$(".ul_xinxi_lv li a:eq(6)").text("电话：" + data.t.tel);
+							$(".ul_xinxi_lv li a:eq(7)").text("QQ：" + data.t.qq);
+							$(".ul_xinxi_lv li a:eq(8)").text("微信：" + data.t.wechat);
+							$(".ul_xinxi_lv li a:eq(9)").text("工作单位：" + data.t.work_addr);
+							$(".ul_xinxi_lv li a:eq(10)").text("所在学校：" + data.t.school);
+
+						} else if(data.t.type == 1) {
+							for(i = 0; i < 11; i++) {
+								html += '<li class="mui-table-view-cell"><a class="mui-navigate-right"></a></li>';
+							}
+							$(".ul_xinxi_lv").append(html)
+							$(".ul_xinxi_lv li a:eq(0)").text("姓名：" + data.t.name);
+							$(".ul_xinxi_lv li a:eq(1)").text("性别：" + sex);
+							if(data.t.birth_time == null) {
+								$(".ul_xinxi_lv li a:eq(2)").text("生日：" + data.t.birth_time);
+							} else {
+								$(".ul_xinxi_lv li a:eq(2)").text("生日：" + data.t.birth_time.split(" ")[0]);
+							}
+							$(".ul_xinxi_lv li a:eq(3)").text("身份证：" + data.t.idCard);
+							$(".ul_xinxi_lv li a:eq(4)").text("文化程度：" + data.t.education);
+							$(".ul_xinxi_lv li a:eq(5)").text("住址：" + data.t.addr);
+							$(".ul_xinxi_lv li a:eq(6)").text("电话：" + data.t.tel);
+							$(".ul_xinxi_lv li a:eq(7)").text("QQ：" + data.t.qq);
+							$(".ul_xinxi_lv li a:eq(8)").text("微信：" + data.t.wechat);
+							$(".ul_xinxi_lv li a:eq(9)").text("工作单位：" + data.t.work_addr);
+							$(".ul_xinxi_lv li a:eq(10)").text("所在学校：" + data.t.school);
+							$(".ul_xinxi_lv li a:eq(11)").text("所学专业：" + data.t.field);
+						} else {
+							for(i = 0; i < 7; i++) {
+								html += '<li class="mui-table-view-cell"><a class="mui-navigate-right"></a></li>';
+							}
+							$(".ul_xinxi_lv").append(html)
+							$(".ul_xinxi_lv li a:eq(0)").text("名称：" + data.t.organization);
+							if(data.t.birth_time == null) {
+								$(".ul_xinxi_lv li a:eq(1)").text("注册时间：" + data.t.birth_time);
+							} else {
+								$(".ul_xinxi_lv li a:eq(1)").text("注册时间：" + data.t.birth_time.split(" ")[0]);
+							}
+							$(".ul_xinxi_lv li a:eq(2)").text("地址：" + data.t.addr);
+							$(".ul_xinxi_lv li a:eq(3)").text("法定代表人：" + data.t.name);
+							$(".ul_xinxi_lv li a:eq(4)").text("注册资金：" + data.t.capital);
+							$(".ul_xinxi_lv li a:eq(5)").text("业务范围：" + data.t.scope);
+							$(".ul_xinxi_lv li a:eq(6)").text("电话：" + data.t.tel);
+						}
+					}
+				}
+			});
+		}
+		getUserByAccountId();
+		$(document).on("tap", '.ul_xinxi_lv li a', function() {
+			var this_lv = $(this);
+			var this_text = $(this_lv).text().split("：")[0];
+			if($(this_lv).text().split("：")[0] == "生日" || $(this_lv).text().split("：")[0] == "注册时间") {
+				(function($) {
+					$.init();
+					var result = $(this_lv)[0];
+					var btns = $('.btn');
+					btns.each(function(i, btn) {
+						var optionsJson = this.getAttribute('data-options') || '{}';
+						var options = JSON.parse(optionsJson);
+						var id = this.getAttribute('id');
+						/*
+						 * 首次显示时实例化组件
+						 * 示例为了简洁，将 options 放在了按钮的 dom 上
+						 * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+						 */
+						var picker = new $.DtPicker(options);
+						picker.show(function(rs) {
+							/*
+							 * rs.value 拼合后的 value
+							 * rs.text 拼合后的 text
+							 * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
+							 * rs.m 月，用法同年
+							 * rs.d 日，用法同年
+							 * rs.h 时，用法同年
+							 * rs.i 分（minutes 的第二个字母），用法同年
+							 */
+							result.innerText = this_text + "：" + rs.text;
+							/* 
+							 * 返回 false 可以阻止选择框的关闭
+							 * return false;
+							 */
+							/*
+							 * 释放组件资源，释放后将将不能再操作组件
+							 * 通常情况下，不需要示放组件，new DtPicker(options) 后，可以一直使用。
+							 * 当前示例，因为内容较多，如不进行资原释放，在某些设备上会较慢。
+							 * 所以每次用完便立即调用 dispose 进行释放，下次用时再创建新实例。
+							 */
+							picker.dispose();
+						});
+					});
+				})(mui);
+			} else {
+				mui.prompt($(this_lv).text().split("：")[0], '', '提示', ["取消", "确认"], function(e) {
+					if(e.index == 1 && e.value.length != 0) {
+						if($(this_lv).text().split("：")[0] == "电话") {
+							if(!/^0?1[3|4|5|8][0-9]\d{8}$/.test(e.value)) {
+								alert("请填写正确的手机号码！");
+							} else {
+								$(this_lv).text($(this_lv).text().split("：")[0] + "：" + e.value);
+							}
+						} else if($(this_lv).text().split("：")[0] == "QQ") {
+							if(!/^[0-9]*[1-9][0-9]*$/.test(e.value) || e.value.length < 5) {
+								alert("请填写正确的QQ号码！");
+							} else {
+								$(this_lv).text($(this_lv).text().split("：")[0] + "：" + e.value);
+							}
+						} else if($(this_lv).text().split("：")[0] == "身份证") {
+							if(!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(e.value)) {
+								alert("请填写正确的身份证号码！");
+							} else {
+								$(this_lv).text($(this_lv).text().split("：")[0] + "：" + e.value);
+							}
+						} else if($(this_lv).text().split("：")[0] == "性别") {
+							if(e.value == "男" || e.value == "女") {
+								$(this_lv).text($(this_lv).text().split("：")[0] + "：" + e.value);
+								if(e.value == "男") {
+									sexsas = 1;
+								} else {
+									sexsas = 0;
+								}
+							} else {
+								alert("请填写正确的性别！例如：男");
+							}
+						} else {
+							$(this_lv).text($(this_lv).text().split("：")[0] + "：" + e.value);
+						}
+					}
+				});
+			}
+
+		})
+
+		function e_lv_fun(e) {
+			if(e == 0) {
+				data = {
+					name: $(".ul_xinxi_lv li a:eq(0)").text().split("：")[1],
+					sex: sexsas,
+					birthTime: $(".ul_xinxi_lv li a:eq(2)").text().split("：")[1] + " 00:00:00",
+					addr: $(".ul_xinxi_lv li a:eq(5)").text().split("：")[1],
+					qq: $(".ul_xinxi_lv li a:eq(7)").text().split("：")[1],
+					wechat: $(".ul_xinxi_lv li a:eq(8)").text().split("：")[1],
+					workAddr: $(".ul_xinxi_lv li a:eq(9)").text().split("：")[1],
+					school: $(".ul_xinxi_lv li a:eq(10)").text().split("：")[1],
+					field: "",
+					sickness: $(".ul_xinxi_lv li a:eq(4)").text().split("：")[1],
+					education: "",
+					capital: "",
+					scope: "",
+					organization: "",
+					tel: $(".ul_xinxi_lv li a:eq(6)").text().split("：")[1],
+					idCard: $(".ul_xinxi_lv li a:eq(3)").text().split("：")[1],
+					photos: photos
+				}
+			} else if(e == 1) {
+				data = {
+					name: $(".ul_xinxi_lv li a:eq(0)").text().split("：")[1],
+					sex: sexsas,
+					birthTime: $(".ul_xinxi_lv li a:eq(2)").text().split("：")[1] + " 00:00:00",
+					addr: $(".ul_xinxi_lv li a:eq(5)").text().split("：")[1],
+					qq: $(".ul_xinxi_lv li a:eq(7)").text().split("：")[1],
+					wechat: $(".ul_xinxi_lv li a:eq(8)").text().split("：")[1],
+					workAddr: $(".ul_xinxi_lv li a:eq(9)").text().split("：")[1],
+					school: $(".ul_xinxi_lv li a:eq(10)").text().split("：")[1],
+					field: $(".ul_xinxi_lv li a:eq(11)").text().split("：")[1],
+					sickness: "",
+					education: $(".ul_xinxi_lv li a:eq(4)").text().split("：")[1],
+					capital: "",
+					scope: "",
+					organization: "",
+					tel: $(".ul_xinxi_lv li a:eq(6)").text().split("：")[1],
+					idCard: $(".ul_xinxi_lv li a:eq(3)").text().split("：")[1],
+					photos: photos
+				}
+			} else {
+				data = {
+					name: $(".ul_xinxi_lv li a:eq(3)").text().split("：")[1],
+					sex: "",
+					birthTime: $(".ul_xinxi_lv li a:eq(1)").text().split("：")[1] + " 00:00:00",
+					addr: $(".ul_xinxi_lv li a:eq(2)").text().split("：")[1],
+					qq: "",
+					wechat: "",
+					workAddr: "",
+					school: "",
+					field: "",
+					sickness: "",
+					education: "",
+					capital: $(".ul_xinxi_lv li a:eq(4)").text().split("：")[1],
+					scope: $(".ul_xinxi_lv li a:eq(5)").text().split("：")[1],
+					organization: $(".ul_xinxi_lv li a:eq(0)").text().split("：")[1],
+					tel: $(".ul_xinxi_lv li a:eq(6)").text().split("：")[1],
+					photos: photos
+				}
+			}
+
+		}
+		$("#reg").on("tap", function() {
+			e_lv_fun(a_lv_a)
+			if(data.birthTime == " 00:00:00") {
+				alert("请选择生日或注册时间！");
+			} else if($(".mui-table-view li[src_id=1] img").attr("src")=="/img/help.png"){
+				alert("请在个人图片选项中上传您的证件照片，以便核实您的真实信息");
+			} else {
+				$.ajax({
+					type: "post",
+					url: config.url + "User/editUser",
+					async: true,
+					data: data,
+					xhrFields: {
+						withCredentials: true
+					},
+					crossDomain: true,
+					success: function(data) {
+						if(data.msg == "成功") {
+							mui.confirm('编辑成功！', '提示', ["确认"], function(e) {
+								if(e.index == 0) {
+									location.href = "user.html";
+								}
+							})
+						} else {
+							alert(data.msg)
+						}
+					}
+				});
+			}
+		})
+	</script>
+
+</html>
