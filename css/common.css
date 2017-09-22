@@ -6,13 +6,10 @@ body {
 	width: auto;
 }
 
-/*.mui-slider {
-	margin-top: 44px;
-}
-*/
 .mui-slider img {
 	/*height: 250px;*/
-	height: 130px;
+	/*height: 130px;*/
+	height: 165px;
 }
 
 .index_title_lv {
@@ -459,4 +456,7 @@ lva {
 
 .mui-bg{
 	background: #4CD964;
+}
+.mui-header-bg{
+	background: #74c53d;
 }

@@ -41,7 +41,18 @@
 			"img/zhishi2.png",
 			"img/laoshi2.png",
 			"mui_news_mode.html",
-			"mui_communication.html"
+			"mui_communication.html",
+			"img/icon/map.png",
+			"img/icon/qiandao.png",
+			"img/icon/jiaoliu.png",
+			"img/icon/baoxiang.png",
+			"img/icon/xinxi.png",
+			"img/icon/gongyi.png",
+			"img/icon/juanzeng.png",
+			"img/icon/shop.png",
+			"maps.html",
+			"maps_map.html",
+			"map.html"
 		],
 		"refer": [
 			"news.html",
@@ -51,7 +62,10 @@
 			"search.html",
 			"news_mode_content.html",
 			"mui_news_mode.html",
-			"mui_communication.html"
+			"mui_communication.html",
+			"maps.html",
+			"maps_map.html",
+			"map.html"
 		]
 	},
 	"news.html": {
@@ -235,14 +249,16 @@
 			"img/jubao.png",
 			"login.html",
 			"news.html",
-			"index.html"
+			"index.html",
+			"mui_news_mode.html"
 		],
 		"refer": [
 			"news_mode.html",
 			"news_mode_content2.html",
 			"login.html",
 			"news.html",
-			"index.html"
+			"index.html",
+			"mui_news_mode.html"
 		]
 	},
 	"published.html": {
@@ -343,12 +359,28 @@
 		"resources": [
 			"news_mode.html",
 			"index.html",
-			"news.html"
+			"news.html",
+			"news_mode_content.html",
+			"img/work2.png",
+			"img/help2.png",
+			"fonts/mui.ttf",
+			"js/jquery-2.1.0.js",
+			"img/experience2.png",
+			"img/zhishi2.png",
+			"img/laoshi2.png",
+			"js/common.js",
+			"img/news3.png",
+			"js/mui.min.js",
+			"css/common.css",
+			"img/love2.png",
+			"css/mui.min.css",
+			"img/yisheng2.png"
 		],
 		"refer": [
 			"news_mode.html",
 			"index.html",
-			"news.html"
+			"news.html",
+			"news_mode_content.html"
 		]
 	},
 	"mui_communication.html": {
@@ -365,6 +397,52 @@
 		"refer": [
 			"index.html",
 			"news.html"
+		]
+	},
+	"maps.html": {
+		"resources": [
+			"index.html",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/mui.js",
+			"css/mui.css",
+			"js/common.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"js/jquery-2.1.0.js",
+			"news.html"
+		],
+		"refer": [
+			"index.html",
+			"news.html"
+		]
+	},
+	"maps_map.html": {
+		"resources": [
+			"js/mui.js",
+			"css/mui.css",
+			"js/immersed.js",
+			"css/common.css",
+			"js/common.js",
+			"js/mui-common.js",
+			"css/mui-common.css",
+			"js/mui.min.js",
+			"index.html"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"map.html": {
+		"resources": [
+			"index.html",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"index.html"
 		]
 	}
 }
