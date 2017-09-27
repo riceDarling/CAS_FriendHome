@@ -1,8 +1,10 @@
 var config = {
-	url: "http://123.56.221.46:8080/FriendHome/"
+	//url: "http://123.56.221.46:8080/FriendHome/"
+	url: "http://192.168.3.4:8080/FriendHome/"
 }
 var config2 = {
-	url: "http://123.56.221.46:8080/"
+	//url: "http://123.56.221.46:8080/"
+	url: "http://192.168.3.4:8080/"
 }
 //var config2 = {
 //	url: "http://60.205.151.97:8080/"
@@ -115,7 +117,11 @@ $(document).ready(function() {
 	//首页新闻模块跳转
 	$(document).on("tap", ".mui-grid-view.mui-grid-9 .mui-table-view-cell>a:not(.mui-btn)[href_lv],.mui-table-view-cell>a:not(.mui-btn)[href_lv]", function() {
 		if($(".mui-content").attr("href_type") == 1) {
-			location.href = $(this).attr("href_lv") + "?" + $(this).children(".mui-media-body").text() + "&" + $(this).parent("li").index()
+			if($(this).parent("li").index() == 2){
+				location.href = $(this).attr("href_lv") + "?" + $(this).children(".mui-media-body").text() + "&" + 10;
+			}else{
+				location.href = $(this).attr("href_lv") + "?" + $(this).children(".mui-media-body").text() + "&" + $(this).parent("li").index()
+			}
 		} else {
 			location.href = $(this).attr("href_lv")
 		}

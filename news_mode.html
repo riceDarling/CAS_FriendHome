@@ -46,7 +46,8 @@
 			$("#header h1").text(decodeURI(location.href.split("?")[1].split("&")[0]));
 		}
 		var module = location.href.split("?")[1].split("&")[1]
-		if(module > 3 && module != 7) {
+		console.log(module);
+		if(module > 3 && module != 10) {
 			$("#header").append('<a class="mui-icon mui-icon mui-icon mui-icon mui-icon-compose mui-pull-right" style="color: #fff;"></a>')
 		}
 		$("#header .mui-icon-compose").on("tap", function() {
@@ -64,6 +65,7 @@
 		});
 
 		function loading_lv_aa(e, q) {
+			
 			if(decodeURI(location.href.split("?")[1].split("&")[0]) == "我的发表" || decodeURI(location.href.split("?")[1].split("&")[0]) == "我的收藏" || decodeURI(location.href.split("?")[1].split("&")[0]) == "我的点赞" || decodeURI(location.href.split("?")[1].split("&")[0]) == "我的捐赠" || decodeURI(location.href.split("?")[1].split("&")[0]) == "我的工作" || decodeURI(location.href.split("?")[1].split("&")[0]) == "我的求助") {
 				passworld_lv_aaa();
 				if(decodeURI(location.href.split("?")[1].split("&")[0]) == "我的发表") {

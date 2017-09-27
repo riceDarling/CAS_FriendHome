@@ -35,7 +35,14 @@
 					"img/icon/shop.png",
 					"maps.html",
 					"maps_map.html",
-					"map.html"
+					"map.html",
+					"mui_welfare.html",
+					"mui_shop.html",
+					"mui_other_modules.html",
+					"mui_sign.html",
+					"mui_help.html",
+					"index.html",
+					"login.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -59,7 +66,18 @@
 					"img/experience.png",
 					"user.html",
 					"news_mode.html",
-					"news.html"
+					"news.html",
+					"img/icon/map.png",
+					"img/icon/qiandao.png",
+					"img/icon/jiaoliu.png",
+					"img/icon/baoxiang.png",
+					"img/icon/gongyi.png",
+					"img/icon/juanzeng.png",
+					"mui_communication.html",
+					"mui_sign.html",
+					"index_youke1.html",
+					"mui_other_modules.html",
+					"mui_help.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -116,7 +134,12 @@
 					"user.html",
 					"published.html",
 					"index_youke1.html",
-					"mui_news_mode.html"
+					"mui_news_mode.html",
+					"mui_welfare.html",
+					"mui_shop.html",
+					"mui_communication.html",
+					"mui_help.html",
+					"login.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -125,7 +148,13 @@
 				"resources": [
 					"index.html",
 					"reg.html",
-					"index_youke1.html"
+					"index_youke1.html",
+					"js/common.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/jquery-2.1.0.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -148,7 +177,8 @@
 					"news.html",
 					"news_mode.html",
 					"index.html",
-					"mui_news_mode.html"
+					"mui_news_mode.html",
+					"login.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -164,7 +194,14 @@
 			"published.html": {
 				"resources": [
 					"news_mode.html",
-					"js/jquery.form.js"
+					"js/jquery.form.js",
+					"login.html",
+					"js/common.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/jquery-2.1.0.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -222,7 +259,16 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/jquery-2.1.0.js",
-					"news.html"
+					"news.html",
+					"img/Zhuoku124.jpg",
+					"img/xing.png",
+					"img/546b12b859f58.jpg",
+					"img/zan.png",
+					"img/zan1.png",
+					"news_mode.html",
+					"img/work2.png",
+					"img/experience2.png",
+					"index_youke1.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -268,6 +314,71 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"mui_welfare.html": {
+				"resources": [
+					"img/news3.png",
+					"img/yisheng2.png",
+					"img/zhishi2.png",
+					"img/Zhuoku124.jpg",
+					"img/laoshi2.png",
+					"img/546b12b859f58.jpg",
+					"news_mode.html",
+					"index.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"mui_shop.html": {
+				"resources": [
+					"index.html",
+					"news_mode.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"mui_other_modules.html": {
+				"resources": [
+					"index.html",
+					"index_youke1.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"mui_sign.html": {
+				"resources": [
+					"js/calendar.js",
+					"css/calendar.css",
+					"index.html",
+					"js/getDate.js",
+					"js/common.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/jquery-2.1.0.js",
+					"js/mui.picker.min.js",
+					"css/mui.picker.min.css",
+					"js/mui.js",
+					"css/mui.css",
+					"news.html",
+					"login.html",
+					"user.html",
+					"index_youke1.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"mui_help.html": {
+				"resources": [
+					"index.html",
+					"img/help2.png",
+					"img/love2.png",
+					"news_mode.html",
+					"index_youke1.html"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -276,9 +387,6 @@
 				"css/feedback.css",
 				"img/xing1.png",
 				"js/zidian.js",
-				"img/546b12b859f58.jpg",
-				"img/Zhuoku124.jpg",
-				"img/zan1.png",
 				"shopsa.html",
 				"img/jubao1.png",
 				"news_mode_content2.html"

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/calendar.css" />
+		<style type="text/css">
+			.calendar-content .chose {
+				color: #fff;
+				background-color: #2AC845;
+				border: 0px solid #007AFF;
+				border-radius: 25px;
+				line-height: 38px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav background_lv">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">友爱家园</h1>
+		</header>
+		<div id="mui-pullrefresh" class="mui-content" href_type="1" style="margin-top: 44px;">
+			<div id="box"></div>
+			<button id="signbtn" type="button" class="mui-btn mui-btn-blue" style="width: 100%;">签到</button>
+		</div>
+		<nav class="mui-bar mui-bar-tab background_lv">
+			<a class="mui-tab-item back_id_lv" href="index.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="news.html">
+				<span class="mui-icon mui-icon-compose"></span>
+				<span class="mui-tab-label">新闻</span>
+			</a>
+			<a class="mui-tab-item" href="shop.html">
+				<span class="mui-icon mui-icon-flag"></span>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="mui-tab-item" href="user.html">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/calendar.js"></script>
+		<script>
+			var cld = new Calendar({
+				el: '#box',
+				value: '', // 默认为new Date();
+				fn: function(obj) {
+					console.log(JSON.stringify(obj));
+				}
+			});
+			/*获取日期
+			var dateObj = new Date();
+			var nowDate = dateObj.getDate();*/
+
+			function p(s) {
+				if(s < 10) {
+					return "0" + s;
+				} else {
+					return s;
+				}
+			};
+
+			var oData = new Date();
+			var year = oData.getFullYear(); //获取完整的年份(4位,1970-????)
+			var month = oData.getMonth() + 1; //获取当前月份(0-11,0代表1月)
+			var data = oData.getDate(); //获取当前日(1-31)
+			var day = oData.getDay(); //获取当前星期X(0-6,0代表星期天)
+			var h = oData.getHours(); //获取当前小时数(0-23)
+			var m = oData.getMinutes(); //获取当前分钟数(0-59)
+			var s = oData.getSeconds(); //获取当前秒数(0-59)
+
+			var dateStr = year + "-" + p(month) + "-" + p(data) + " " + h + ":" + m + ":" + s;
+			var dateStr2 = year + "-" + p(month) + "-" + p(data);
+
+			$.ajax({
+				type: "post",
+				url: config.url + "User/getSignByAccountId",
+				async: true,
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: function(data) {
+					if(data.t != '' && data.t != null) {
+						if(data.t.time == dateStr2) {
+							mui.toast('您今天已经签过到了!');
+							$('#signbtn').text('已签到');
+							$('#signbtn').attr('disabled', "true");
+						}
+					} else {
+						$('#signbtn').text('签到');
+						$('#signbtn').removeAttr('disabled');
+						mui.plusReady(function() {
+							var oAccount = plus.storage.getItem("account");
+							document.getElementById('signbtn').addEventListener('tap', function() {
+								if(plus.storage.getItem("account") == null || plus.storage.getItem("pwd") == null) {
+									var btnArray = ['确认'];
+									mui.confirm('您还没有登录，不能进行以下操作是否登录？', '提示', btnArray, function(e) {
+										location.href = "login.html";
+									})
+								};
+								$.ajax({
+									type: "post",
+									url: config.url + "User/userSign",
+									data: {
+										time: dateStr,
+										username: oAccount
+									},
+									async: true,
+									success: function(data) {
+										mui.toast('签到成功');
+										$('#signbtn').attr('disabled', "true");
+										$('#signbtn').text('已签到');
+									}
+								});
+
+							});
+
+						});
+
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

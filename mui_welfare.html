@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css" />
+		<style type="text/css">
+			.mui-content #mui-view-z .mui-table-view-cell span {
+				border-radius: 100%;
+				display: inline-block;
+				width: 36px;
+				height: 36px;
+				/*border: 1px solid #ccc;*/
+				overflow: hidden;
+				background: #fff;
+				text-align: center;
+				line-height: 36px;
+			}
+			
+			.mui-content #mui-view-z .mui-table-view-cell img {
+				height: 26px !important;
+				margin-top: 4px;
+			}
+			
+			#mui-view-z .mui-table-view-cell .mui-media.mui-col-xs-4 {
+				widows: 24.999333% !important;
+			}
+			
+			.mui-toast-message {
+				width: 240px;
+			}
+			#mui_welfare_img .mui-control-item{
+				padding: 0 !important;
+				border-bottom: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav background_lv">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">友爱家园</h1>
+			<!--<a class="mui-icon mui-icon mui-icon-search mui-pull-right" style="color: #fff;"></a>-->
+		</header>
+		<div id="pullrefresh" class="mui-content" href_type="1" style="margin-top:45px;">
+			<div class="mui-input-row" style="text-align: center;">
+				<span style="margin-top:100px;color:red;font:15px '微软雅黑';">共</span>
+				<span class="mui-badge mui-badge-danger">1</span>
+				<span class="mui-badge mui-badge-primary">2</span>
+				<span class="mui-badge mui-badge-success">7</span>
+				<span class="mui-badge mui-badge-warning">3</span>
+				<span class="mui-badge mui-badge-danger">1</span>
+				<span class="mui-badge mui-badge-purple">4</span>
+				<span class="mui-badge mui-badge-purple">6</span>
+				<span class="mui-badge mui-badge-purple">5</span>
+				<span class="mui-badge mui-badge-purple">1</span>
+				<span style="color:red;font:15px '微软雅黑';">份爱心</span>
+			</div>
+
+			<ul id="mui-view-z" class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="">
+						<span class="mui-icon" style="background: #39B9DE;"><img src="img/news3.png"></span>
+						<div class="mui-media-body">运动捐步</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="">
+						<span class="mui-icon" style="background: #52CB40;"><img src="img/zhishi2.png"></span>
+						<div class="mui-media-body">每月一捐</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="">
+						<span class="mui-icon" style="background: #FF2B65;"><img src="img/yisheng2.png"></span>
+						<div class="mui-media-body">一对一专区</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="">
+						<span class="mui-icon" style="background: #D568AB;"><img src="img/laoshi2.png"></span>
+						<div class="mui-media-body">疾病求助</div>
+					</a>
+				</li>
+			</ul>
+			<div id="slider" class="mui-slider" style="height: 140px;">
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="img/546b12b859f58.jpg">
+						</a>
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="img/Zhuoku124.jpg">
+						</a>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="img/546b12b859f58.jpg">
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="img/Zhuoku124.jpg">
+						</a>
+					</div>
+					<!-- 第四张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="img/546b12b859f58.jpg">
+						</a>
+					</div>
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="img/Zhuoku124.jpg">
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="mui-input-row mui-search" style="width: 60%;margin: 5px 0;">
+				<input type="search" class="mui-input-clear" placeholder="查询公益项目" style="float: left;">
+			</div>
+			<div id="mui_welfare_img" style="height: 120px;" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<div class="mui-scroll">
+					<a class="mui-control-item mui-active">
+						<img src="img/Zhuoku124.jpg" width="100px" />
+						<p>助力捡回珍珠计划</p>
+					</a>
+					<a class="mui-control-item">
+						<img src="img/Zhuoku124.jpg" width="100px" />
+						<p>助力捡回珍珠计划</p>
+					</a>
+					<a class="mui-control-item">
+						<img src="img/Zhuoku124.jpg" width="100px" />
+						<p>助力捡回珍珠计划</p>
+					</a>
+					<a class="mui-control-item">
+						<img src="img/Zhuoku124.jpg" width="100px" />
+						<p>助力捡回珍珠计划</p>
+					</a>
+					<a class="mui-control-item">
+						<img src="img/Zhuoku124.jpg" width="100px" />
+						<p>助力捡回珍珠计划</p>
+					</a>
+					<a class="mui-control-item">
+						<img src="img/Zhuoku124.jpg" width="100px" />
+						<p>助力捡回珍珠计划</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab background_lv">
+			<a class="mui-tab-item back_id_lv" href="index.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="news.html">
+				<span class="mui-icon mui-icon-compose"></span>
+				<span class="mui-tab-label">新闻</span>
+			</a>
+			<a class="mui-tab-item" href="shop.html">
+				<span class="mui-icon mui-icon-flag"></span>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a class="mui-tab-item" href="user.html">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+
+	</body>
+	<script>
+		mui.toast('此功能正在完善中...');
+	</script>
+
+</html>
