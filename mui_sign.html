@@ -52,6 +52,7 @@
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/calendar.js"></script>
 		<script>
+			
 			var cld = new Calendar({
 				el: '#box',
 				value: '', // 默认为new Date();
@@ -103,6 +104,7 @@
 							mui.plusReady(function() {
 								var oAccount = plus.storage.getItem("account");
 								document.getElementById('signbtn').addEventListener('tap', function() {
+
 									if(plus.storage.getItem("account") == null || plus.storage.getItem("pwd") == null) {
 										var btnArray = ['确认'];
 										mui.confirm('您还没有登录，不能进行以下操作是否登录？', '提示', btnArray, function(e) {
@@ -110,6 +112,7 @@
 										});
 										return false;
 									};
+
 									$.ajax({
 										type: "post",
 										url: config.url + "User/userSign",

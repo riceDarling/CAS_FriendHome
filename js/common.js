@@ -53,8 +53,8 @@ function login_aaaa() {
 					url: config.url + "Account/login",
 					async: true,
 					data: {
-						"account": "woshiyouke1",
-						"pwd": 111111
+						"account": "woshiyouke",
+						"pwd": "123456"
 					},
 					xhrFields: {
 						withCredentials: true
