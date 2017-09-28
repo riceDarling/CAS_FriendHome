@@ -343,7 +343,8 @@
 				"resources": [
 					"index.html",
 					"index_youke1.html",
-					"news.html"
+					"news.html",
+					"user.html"
 				],
 				"refer": [],
 				"priority": 0

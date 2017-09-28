@@ -532,12 +532,14 @@
 		"resources": [
 			"index.html",
 			"index_youke1.html",
-			"news.html"
+			"news.html",
+			"user.html"
 		],
 		"refer": [
 			"index.html",
 			"index_youke1.html",
-			"news.html"
+			"news.html",
+			"user.html"
 		]
 	},
 	"mui_sign.html": {

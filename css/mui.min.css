@@ -8,7 +8,7 @@
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 
 html {
-	font-family:"微软雅黑",sans-serif;
+	font-family: "微软雅黑", sans-serif;
 	-webkit-text-size-adjust: 100%
 }
 
@@ -220,7 +220,7 @@ th {
 }
 
 body {
-	font-family:"微软雅黑",'Helvetica Neue', Helvetica, sans-serif;
+	font-family: "微软雅黑", 'Helvetica Neue', Helvetica, sans-serif;
 	font-size: 17px;
 	line-height: 21px;
 	color: #000;
@@ -2389,7 +2389,7 @@ input[type=submit]:enabled:active {
 input,
 select,
 textarea {
-	font-family: "微软雅黑",'Helvetica Neue', Helvetica, sans-serif;
+	font-family: "微软雅黑", 'Helvetica Neue', Helvetica, sans-serif;
 	font-size: 17px;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-tap-highlight-color: transparent
@@ -2553,7 +2553,7 @@ select:focus {
 }
 
 .mui-input-row label {
-	font-family:"微软雅黑",'Helvetica Neue', Helvetica, sans-serif;
+	font-family: "微软雅黑", 'Helvetica Neue', Helvetica, sans-serif;
 	line-height: 1.1;
 	float: left;
 	width: 35%;
@@ -2947,13 +2947,13 @@ select:focus {
 }
 
 .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
-	/*color: #007aff;*/
+	color: #007aff;
 	/*border-bottom: 2px solid #007aff;*/
-	color: #fff;
+	/*color: #fff;*/
 	/*background: #A5EA76;*/
 	background: #AFDE8E;
-	border-top-left-radius:10px ;
-	border-top-right-radius:10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
 
 .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
@@ -4675,7 +4675,10 @@ body>.mui-progressbar {
 	border: 0
 }
 
-
-#mui-indicator-z{
+#mui-indicator-z {
 	margin-top: 5px;
+}
+
+#mui-view-z li {
+	margin-top: 15px;
 }
