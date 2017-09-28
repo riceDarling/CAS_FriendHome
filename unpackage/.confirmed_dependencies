@@ -274,7 +274,8 @@
 			"login.html",
 			"news.html",
 			"index.html",
-			"mui_news_mode.html"
+			"mui_news_mode.html",
+			"index_youke1.html"
 		],
 		"refer": [
 			"news_mode.html",
@@ -282,7 +283,8 @@
 			"login.html",
 			"news.html",
 			"index.html",
-			"mui_news_mode.html"
+			"mui_news_mode.html",
+			"index_youke1.html"
 		]
 	},
 	"published.html": {
@@ -374,7 +376,8 @@
 			"mui_sign.html",
 			"index_youke1.html",
 			"mui_other_modules.html",
-			"mui_help.html"
+			"mui_help.html",
+			"news_mode_content.html"
 		],
 		"refer": [
 			"index.html",
@@ -385,7 +388,8 @@
 			"mui_sign.html",
 			"index_youke1.html",
 			"mui_other_modules.html",
-			"mui_help.html"
+			"mui_help.html",
+			"news_mode_content.html"
 		]
 	},
 	"password.html": {
@@ -527,11 +531,13 @@
 	"mui_other_modules.html": {
 		"resources": [
 			"index.html",
-			"index_youke1.html"
+			"index_youke1.html",
+			"news.html"
 		],
 		"refer": [
 			"index.html",
-			"index_youke1.html"
+			"index_youke1.html",
+			"news.html"
 		]
 	},
 	"mui_sign.html": {

@@ -77,7 +77,8 @@
 					"mui_sign.html",
 					"index_youke1.html",
 					"mui_other_modules.html",
-					"mui_help.html"
+					"mui_help.html",
+					"news_mode_content.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -178,7 +179,8 @@
 					"news_mode.html",
 					"index.html",
 					"mui_news_mode.html",
-					"login.html"
+					"login.html",
+					"index_youke1.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -340,7 +342,8 @@
 			"mui_other_modules.html": {
 				"resources": [
 					"index.html",
-					"index_youke1.html"
+					"index_youke1.html",
+					"news.html"
 				],
 				"refer": [],
 				"priority": 0
