@@ -52,6 +52,7 @@
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/calendar.js"></script>
 		<script>
+			mui.init();
 			var cld = new Calendar({
 				el: '#box',
 				value: '', // 默认为new Date();
@@ -92,44 +93,54 @@
 				},
 				crossDomain: true,
 				success: function(data) {
-					if(data.t != '' && data.t != null) {
-						if(data.t.time == dateStr2) {
-							mui.toast('您今天已经签过到了!');
-							$('#signbtn').text('已签到');
-							$('#signbtn').attr('disabled', "true");
+					if(data.msg == '成功') {
+						if(data.t != '' && data.t != null) {
+							if(data.t.time != '' && data.t.time != null) {
+								if(data.t.time == dateStr2) {
+									mui.toast('您今天已经签过到了!');
+									$('#signbtn').text('已签到');
+									$('#signbtn').attr('disabled', "true");
+								} else {
+									$('#signbtn').text('签到');
+									$('#signbtn').removeAttr('disabled');
+									mui.plusReady(function() {
+										var oAccount = plus.storage.getItem("account");
+										document.getElementById('signbtn').addEventListener('tap', function() {
+											if(plus.storage.getItem("account") == null || plus.storage.getItem("pwd") == null) {
+												var btnArray = ['确认'];
+												mui.confirm('您还没有登录，不能进行以下操作是否登录？', '提示', btnArray, function(e) {
+													location.href = "login.html";
+												});
+												return false;
+											};
+											$.ajax({
+												type: "post",
+												url: config.url + "User/userSign",
+												data: {
+													time: dateStr,
+													username: oAccount
+												},
+												async: true,
+												xhrFields: {
+													withCredentials: true
+												},
+												crossDomain: true,
+												success: function(data) {
+													mui.toast('签到成功');
+													$('#signbtn').attr('disabled', "true");
+													$('#signbtn').text('已签到');
+												}
+											});
+
+										});
+
+									});
+								}
+							}
+
 						}
-					} else {
-						$('#signbtn').text('签到');
-						$('#signbtn').removeAttr('disabled');
-						mui.plusReady(function() {
-							var oAccount = plus.storage.getItem("account");
-							document.getElementById('signbtn').addEventListener('tap', function() {
-								if(plus.storage.getItem("account") == null || plus.storage.getItem("pwd") == null) {
-									var btnArray = ['确认'];
-									mui.confirm('您还没有登录，不能进行以下操作是否登录？', '提示', btnArray, function(e) {
-										location.href = "login.html";
-									})
-								};
-								$.ajax({
-									type: "post",
-									url: config.url + "User/userSign",
-									data: {
-										time: dateStr,
-										username: oAccount
-									},
-									async: true,
-									success: function(data) {
-										mui.toast('签到成功');
-										$('#signbtn').attr('disabled', "true");
-										$('#signbtn').text('已签到');
-									}
-								});
-
-							});
-
-						});
-
 					}
+
 				}
 			});
 		</script>
