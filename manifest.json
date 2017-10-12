@@ -42,7 +42,9 @@
 					"mui_sign.html",
 					"mui_help.html",
 					"index.html",
-					"login.html"
+					"login.html",
+					"reg.html",
+					"img/icon/vip.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -78,7 +80,9 @@
 					"index_youke1.html",
 					"mui_other_modules.html",
 					"mui_help.html",
-					"news_mode_content.html"
+					"news_mode_content.html",
+					"img/icon/vip.png",
+					"img/icon/shop.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -180,7 +184,14 @@
 					"index.html",
 					"mui_news_mode.html",
 					"login.html",
-					"index_youke1.html"
+					"index_youke1.html",
+					"js/common.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/jquery-2.1.0.js",
+					"news_mode_content2.html",
+					"img/zan1.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -210,7 +221,8 @@
 			},
 			"reg.html": {
 				"resources": [
-					"login.html"
+					"login.html",
+					"index.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -270,7 +282,8 @@
 					"news_mode.html",
 					"img/work2.png",
 					"img/experience2.png",
-					"index_youke1.html"
+					"index_youke1.html",
+					"user.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -383,6 +396,13 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"news_mode_content2.html": {
+				"resources": [
+					"news_mode_content.html"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -392,8 +412,7 @@
 				"img/xing1.png",
 				"js/zidian.js",
 				"shopsa.html",
-				"img/jubao1.png",
-				"news_mode_content2.html"
+				"img/jubao1.png"
 			]
 		}
 	}}

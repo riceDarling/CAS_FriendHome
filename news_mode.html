@@ -46,8 +46,8 @@
 			$("#header h1").text(decodeURI(location.href.split("?")[1].split("&")[0]));
 		}
 		var module = location.href.split("?")[1].split("&")[1]
-		console.log(module);
-		if(module > 3 && module != 10) {
+		
+		if(module > 3 && module != 10 && module != 7 && module != 6) {
 			$("#header").append('<a class="mui-icon mui-icon mui-icon mui-icon mui-icon-compose mui-pull-right" style="color: #fff;"></a>')
 		}
 		$("#header .mui-icon-compose").on("tap", function() {
@@ -272,7 +272,7 @@
 									}
 								}
 							}
-							for(i = 0; i < data.obj.length - e - 1; i++) {
+							for(i = 0; i < data.obj.length - e; i++) {
 								//for(i = data.obj.length - e - 1; i > data.obj.length - q; i--) {
 								if(data.obj[i].isTop == 0) {
 									if(i < data.obj.length) {

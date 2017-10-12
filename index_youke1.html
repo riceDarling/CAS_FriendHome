@@ -10,23 +10,28 @@
 		<script type="text/javascript" src="js/common.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/common.css" />
+		<style type="text/css">
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell>a:not(.mui-btn) {
+				padding: 5px 0px 0px 0px;
+			}
+		</style>
 	</head>
 
 	<body>
 		<header id="header" class="mui-bar mui-bar-nav background_lv">
 			<h1 class="mui-title">首页</h1>
-			<!--<a class="mui-icon mui-icon mui-icon-search mui-pull-right" style="color: #fff;"></a>-->
+			<a class="mui-icon mui-icon mui-icon-search mui-pull-right" style="color: #fff;"></a>
 		</header>
 		<!--
         	作者：1823228253@qq.com
         	时间：2017-04-18
         	描述：
         -->
-        <!-- 搜索框 -->
-		<div class="mui-input-row mui-search" style="margin-top: 45px;">
+		<!-- 搜索框 -->
+		<!--<div class="mui-input-row mui-search" style="margin-top: 45px;">
 			<input id="mui-search-z" type="search" class="mui-input-clear" placeholder="请输入您要搜索的内容...">
-		</div>
-		<div class="mui-slider">
+		</div>-->
+		<div class="mui-slider" style="margin-top: 44px;">
 			<div class="mui-slider-group mui-slider-loop">
 			</div>
 		</div>
@@ -38,44 +43,56 @@
 		<div class="mui-content" href_type="1">
 			<!--<div class="index_title_lv"></div>-->
 			<ul id="mui-view-z" class="mui-table-view mui-grid-view mui-grid-9">
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="padding: 4px 12px;border-right: 0;border-bottom: 0;">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%; padding: 4px 12px;border-right: 0;border-bottom: 0;">
 					<a href_lv="mui_communication.html">
 						<span class="mui-icon" style="background: #52CB40;"><img src="img/icon/jiaoliu.png"></span>
 						<div class="mui-media-body">交流</div>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="padding: 4px 12px;border-right: 0;border-bottom: 0;">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%; padding: 4px 12px;border-right: 0;border-bottom: 0;">
 					<a href_lv="mui_help.html">
 						<span class="mui-icon" style="background: #FF2B65;"><img src="img/icon/juanzeng.png"></span>
 						<div class="mui-media-body">求助/捐赠</div>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="padding: 4px 12px;border-right: 0;border-bottom: 0;">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%; padding: 4px 12px;border-right: 0;border-bottom: 0;">
 					<a href_lv="news_mode.html">
 						<span class="mui-icon" style="background: #E74E02;"><img src="img/icon/gongyi.png"></span>
 						<div class="mui-media-body">友爱公益</div>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="padding: 4px 12px;border-right: 0;border-bottom: 0;">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="shop.html">
+						<span class="mui-icon" style="background: #D568AB;"><img src="img/icon/shop.png"></span>
+						<div class="mui-media-body">友爱商城</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%; padding: 4px 12px;border-right: 0;border-bottom: 0;">
 					<a href_lv="mui_sign.html">
 						<span class="mui-icon" style="background: #F2A70D;"><img src="img/icon/qiandao.png"></span>
 						<div class="mui-media-body">签到</div>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="padding: 4px 12px;border-right: 0;border-bottom: 0;">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%; padding: 4px 12px;border-right: 0;border-bottom: 0;">
 					<a href_lv="mui_other_modules.html">
 						<span class="mui-icon" style="background: #06C081;"><img src="img/icon/map.png"></span>
 						<div class="mui-media-body">巧遇</div>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="padding: 4px 12px;border-right: 0;border-bottom: 0;">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%; padding: 4px 12px;border-right: 0;border-bottom: 0;">
 					<a href_lv="mui_other_modules.html">
 						<span class="mui-icon" style="background: #985EFA;"><img src="img/icon/baoxiang.png"></span>
 						<div class="mui-media-body">寻宝</div>
 					</a>
 				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="width: 24.999333%;padding: 4px 12px;border-right: 0;border-bottom: 0;">
+					<a href_lv="reg.html">
+						<span class="mui-icon" style="background: #39B9DE;"><img src="img/icon/vip.png"></span>
+						<div class="mui-media-body">会员注册</div>
+					</a>
+				</li>
 			</ul>
-			<div class="index_title_lv" style="text-align: center;color: #6C6C6C;background: #F6ED26;">
+			<div class="index_title_lv" style="text-align: center;color: #6C6C6C;">
 				<marquee scrolldelay="100">客服电话:<span id="mui-phone"> 18920862297</span> 联系人:
 					<span id="mui-contacts"> 赵凤磊</span></marquee>
 			</div>
@@ -122,11 +139,11 @@
 			</a>
 			<a class="mui-tab-item" href="news.html">
 				<span class="mui-icon mui-icon-compose"></span>
-				<span class="mui-tab-label">新闻</span>
+				<span class="mui-tab-label">最新</span>
 			</a>
 			<a class="mui-tab-item" href="shop.html">
 				<span class="mui-icon mui-icon-flag"></span>
-				<span class="mui-tab-label">商城</span>
+				<span class="mui-tab-label">友爱商城</span>
 			</a>
 			<a class="mui-tab-item" href="user.html">
 				<span class="mui-icon mui-icon-contact"></span>
@@ -166,7 +183,10 @@
 			}
 		});
 
-		$("#mui-search-z").on("click", function() {
+		/*$("#mui-search-z").on("click", function() {
+			location.href = "search.html";
+		});*/
+		$(".mui-icon-search").on("click", function() {
 			location.href = "search.html";
 		});
 	</script>
@@ -191,17 +211,29 @@
 
 		/*横向滚动*/
 		var mui_module_id = 0;
-		$('#mui-indicator-z').on('tap', 'a', function() {
-			$("#mui-table-view-z").html('');
-			mui_module_id = $(this).attr('mui-data-id');
-			if(mui_module_id) {
-				$("#mui-table-view-z").html('<li class="mui-table-view-cell mui-media" style="text-align: center;">正在加载...</li>');
-				getArticleByModule_z(mui_module_id);
-			} else {
-				$("#mui-table-view-z").html('<li class="mui-table-view-cell mui-media" style="color:red;text-align: center;">此功能正在完善中...</li>');
+		mui.plusReady(function() {
+			$('#mui-indicator-z').on('tap', 'a', function() {
+
+				plus.navigator.setCookie('indexBtn', $(this).index());
+
+				$("#mui-table-view-z").html('');
+				mui_module_id = $(this).attr('mui-data-id');
+				if(mui_module_id) {
+					$("#mui-table-view-z").html('<li class="mui-table-view-cell mui-media" style="text-align: center;">正在加载...</li>');
+					getArticleByModule_z(mui_module_id);
+				} else {
+					$("#mui-table-view-z").html('<li class="mui-table-view-cell mui-media" style="color:red;text-align: center;">此功能正在完善中...</li>');
+				}
+				return mui_module_id;
+			});
+
+			var indexBtn2 = plus.navigator.getCookie('indexBtn');
+
+			if(indexBtn2 != null && indexBtn2 != undefined) {
+				$('#mui-indicator-z a').removeClass('mui-active');
+				$('#mui-indicator-z a').eq(indexBtn2).addClass('mui-active');
 			}
-			return mui_module_id;
-		});
+		})
 
 		function getArticleByModule_z(id) {
 			$.ajax({
@@ -221,7 +253,7 @@
 							$("li[text=1]").remove();
 						}
 						$("#mui-table-view-z").html('');
-						for(var ieq = 0; ieq < data.obj.length; ieq++) {
+						for(var ieq = 0; ieq < 4; ieq++) {
 							html = "";
 							html += '<li class="mui-table-view-cell mui-media">'
 							html += '<a href_lv="news_mode_content.html?' + data.obj[ieq].id + '">'

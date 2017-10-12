@@ -7,9 +7,14 @@
 		<title></title>
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
-		<script type="text/javascript" src="js/common.js"></script>
+		<!--<script type="text/javascript" src="js/common.js"></script>-->
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/common.css" />
+		<style type="text/css">
+			#mui-view-z li {
+				margin-top: 15px;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -46,11 +51,11 @@
 			</a>
 			<a class="mui-tab-item" href="news.html">
 				<span class="mui-icon mui-icon-compose"></span>
-				<span class="mui-tab-label">新闻</span>
+				<span class="mui-tab-label">最新</span>
 			</a>
 			<a class="mui-tab-item" href="shop.html">
 				<span class="mui-icon mui-icon-flag"></span>
-				<span class="mui-tab-label">商城</span>
+				<span class="mui-tab-label">友爱商城</span>
 			</a>
 			<a class="mui-tab-item" href="user.html">
 				<span class="mui-icon mui-icon-contact"></span>
@@ -60,6 +65,11 @@
 
 	</body>
 	<script>
+		//底部nav跳转
+		$(document).on("tap", ".mui-tab-item", function() {
+			location.href = $(this).attr("href");
+		});
+  
 		//首页新闻模块跳转
 		$(document).on("tap", ".mui-grid-view.mui-grid-9 .mui-table-view-cell>a:not(.mui-btn)[href_lv],.mui-table-view-cell>a:not(.mui-btn)[href_lv]", function() {
 			if($(".mui-content").attr("href_type") == 1) {
