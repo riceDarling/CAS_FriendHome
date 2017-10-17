@@ -11,8 +11,21 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/common.css" />
 		<style type="text/css">
-			.mui-grid-view.mui-grid-9 .mui-table-view-cell>a:not(.mui-btn){
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell>a:not(.mui-btn) {
 				padding: 5px 0px 0px 0px;
+			}
+			
+			.mui-table-view-cell>a:not(.mui-btn) {
+				margin: -22px -15px;
+			}
+			
+			.mui-table-view .mui-media-object {
+				height: 30px;
+				line-height: 30px;
+			}
+			
+			#mui-table-view-z img {
+				margin-top: 6px;
 			}
 		</style>
 	</head>
@@ -265,8 +278,8 @@
 							}
 							html += '<div class="mui-media-body">'
 							html += '<span>' + data.obj[ieq].title + '</span>'
-							html += '<p class="mui-ellipsis" >' + data.obj[ieq].name + '</p>'
-							html += '<p class="mui-ellipsis" >上传时间：' + data.obj[ieq].postTime + '</p>'
+							/*html += '<p class="mui-ellipsis" >' + data.obj[ieq].name + '</p>'
+							html += '<p class="mui-ellipsis" >上传时间：' + data.obj[ieq].postTime + '</p>'*/
 							html += '</div>'
 							html += '</a>'
 							html += '</li>'
@@ -277,8 +290,7 @@
 
 			});
 		}
-		//getArticleByModule_z(mui_module_id);
-		
+
 		$(window).scroll(function() {
 			if($(window).scrollTop() > 1) {
 				mui.toast('正在加载更多内容...');
@@ -289,39 +301,6 @@
 				}, 1500);
 			};
 		});
-		
-		
-	</script>
-	<script type="text/javascript">
-		/*var scrollToTopBox = document.getElementById('scrollToTop');
-
-		scrollToTopBox.addEventListener('tap', function(e) {
-			e.stopPropagation();
-			if(mui.os.android) {
-				window.scrollTo(0, 0);
-			} else {
-				mui('#pullrefresh').pullRefresh().scrollTo(0, 0, 100); //滚动到顶部 
-			}
-
-		})
-		// Android上监听原生滚动，iOS上监听div滚动，上拉超过一屏后显示按钮，否则隐藏，可自行在条件判断中修改  
-		if(mui.os.android) {
-			window.addEventListener('scroll', function(e) {
-				if(window.pageYOffset >= window.innerHeight && scrollToTopBox.classList.contains('hide')) {
-					scrollToTopBox.classList.remove('hide');
-				} else if(window.pageYOffset < window.innerHeight && !scrollToTopBox.classList.contains('hide')) {
-					scrollToTopBox.classList.add('hide');
-				}
-			});
-		} else {
-			document.getElementById('pullrefresh').addEventListener('scroll', function() {
-				if(mui('#pullrefresh').pullRefresh().y <= window.innerHeight * (-1) && scrollToTopBox.classList.contains('hide')) {
-					scrollToTopBox.classList.remove('hide');
-				} else if(mui('#pullrefresh').pullRefresh().y > window.innerHeight * (-1) && !scrollToTopBox.classList.contains('hide')) {
-					scrollToTopBox.classList.add('hide');
-				}
-			});
-		}*/
 	</script>
 
 </html>
