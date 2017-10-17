@@ -82,7 +82,8 @@
 					"mui_help.html",
 					"news_mode_content.html",
 					"img/icon/vip.png",
-					"img/icon/shop.png"
+					"img/icon/shop.png",
+					"shop.html"
 				],
 				"refer": [],
 				"priority": 0

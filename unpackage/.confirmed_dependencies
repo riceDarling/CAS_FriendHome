@@ -390,7 +390,8 @@
 			"mui_help.html",
 			"news_mode_content.html",
 			"img/icon/vip.png",
-			"img/icon/shop.png"
+			"img/icon/shop.png",
+			"shop.html"
 		],
 		"refer": [
 			"index.html",
@@ -402,7 +403,8 @@
 			"index_youke1.html",
 			"mui_other_modules.html",
 			"mui_help.html",
-			"news_mode_content.html"
+			"news_mode_content.html",
+			"shop.html"
 		]
 	},
 	"password.html": {
