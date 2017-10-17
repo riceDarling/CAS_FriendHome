@@ -223,9 +223,9 @@
 		var mui_module_id = 0;
 		mui.plusReady(function() {
 			$('#mui-indicator-z').on('tap', 'a', function() {
-			
-				plus.navigator.setCookie('indexBtn',$(this).index());
 
+				plus.navigator.setCookie('indexBtn', $(this).index());
+				plus.navigator.setCookie('muiMmoduleId', $(this).attr('mui-data-id'));
 				$("#mui-table-view-z").html('');
 				mui_module_id = $(this).attr('mui-data-id');
 				if(mui_module_id) {
@@ -236,14 +236,15 @@
 				}
 				return mui_module_id;
 			});
-			
-			var indexBtn2 = plus.navigator.getCookie('indexBtn');
 
-			if(indexBtn2 != null && indexBtn2 != undefined){
+			var indexBtn2 = plus.navigator.getCookie('indexBtn');
+			var muiMmoduleId2 = plus.navigator.getCookie('muiMmoduleId');
+			if(indexBtn2 != null && indexBtn2 != undefined) {
 				$('#mui-indicator-z a').removeClass('mui-active');
 				$('#mui-indicator-z a').eq(indexBtn2).addClass('mui-active');
+				getArticleByModule_z(muiMmoduleId2);
 			}
-		})
+		});
 
 		function getArticleByModule_z(id) {
 			$.ajax({
@@ -285,39 +286,96 @@
 				}
 
 			});
+
 		}
-		getArticleByModule_z(mui_module_id);
+	//	getArticleByModule_z(mui_module_id);
+
+		/*	mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						contentrefresh: '正在加载...',
+						callback: this.pullupRefresh
+					}
+				}
+			});
+			// 上拉加载具体业务实现
+			function pullupRefresh() {
+				setTimeout(function() {
+					var titleVal = $('#mui-indicator-z a.mui-active').text();
+					var textIndex = $('#mui-indicator-z a.mui-active').attr('mui-data-id')
+					location.href = "news_mode.html?" + $.trim(titleVal) + "&" + textIndex;
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+				}, 1500);
+			}*/
+
+		//document.getElementById('pullrefresh').addEventListener('scroll', function(e) {
+		//console.log(window.pageYOffset +'a');
+		//console.log(window.innerHeight + 'b');
+
+		//console.log(mui('#pullrefresh').scroll().y)
+		/*if(window.pageYOffset >= window.innerHeight) {
+			mui.toast(1);
+			var titleVal = $('#mui-indicator-z a.mui-active').text();
+			var textIndex = $('#mui-indicator-z a.mui-active').attr('mui-data-id')
+			location.href = "news_mode.html?" + $.trim(titleVal) + "&" + textIndex;
+		} */
+		//});
+
+		$(window).scroll(function() {
+			if($(window).scrollTop() > 1) {
+				mui.toast('正在加载更多内容...');
+				setTimeout(function() {
+					var titleVal = $('#mui-indicator-z a.mui-active').text();
+					var textIndex = $('#mui-indicator-z a.mui-active').attr('mui-data-id')
+					location.href = "news_mode.html?" + $.trim(titleVal) + "&" + textIndex;
+				}, 1500);
+			};
+		});
+
+		/*$("#pullrefresh").scroll(function() {
+			var $this = $(this),
+				viewH = $(this).height(),
+				contentH = $($this).get(0).scrollHeight,
+				scrollTop = $(this).scrollTop();
+			//if(scrollTop / (contentH - viewH) >= 0.95) {
+			if(contentH - viewH - scrollTop <= 100) {
+				var titleVal = $('#mui-indicator-z a.mui-active').text();
+				var textIndex = $('#mui-indicator-z a.mui-active').attr('mui-data-id')
+				location.href = "news_mode.html?" + $.trim(titleVal) + "&" + textIndex;
+			}
+		});*/
 	</script>
 	<script type="text/javascript">
-		var scrollToTopBox = document.getElementById('scrollToTop');
+		/*var scrollToTopBox = document.getElementById('scrollToTop');
 
-		scrollToTopBox.addEventListener('tap', function(e) {
-			e.stopPropagation();
-			if(mui.os.android) {
-				window.scrollTo(0, 0);
-			} else {
-				mui('#pullrefresh').pullRefresh().scrollTo(0, 0, 100); //滚动到顶部 
-			}
+																		scrollToTopBox.addEventListener('tap', function(e) {
+																			e.stopPropagation();
+																			if(mui.os.android) {
+																				window.scrollTo(0, 0);
+																			} else {
+																				mui('#pullrefresh').pullRefresh().scrollTo(0, 0, 100); //滚动到顶部 
+																			}
 
-		})
-		// Android上监听原生滚动，iOS上监听div滚动，上拉超过一屏后显示按钮，否则隐藏，可自行在条件判断中修改  
-		if(mui.os.android) {
-			window.addEventListener('scroll', function(e) {
-				if(window.pageYOffset >= window.innerHeight && scrollToTopBox.classList.contains('hide')) {
-					scrollToTopBox.classList.remove('hide');
-				} else if(window.pageYOffset < window.innerHeight && !scrollToTopBox.classList.contains('hide')) {
-					scrollToTopBox.classList.add('hide');
-				}
-			});
-		} else {
-			document.getElementById('pullrefresh').addEventListener('scroll', function() {
-				if(mui('#pullrefresh').pullRefresh().y <= window.innerHeight * (-1) && scrollToTopBox.classList.contains('hide')) {
-					scrollToTopBox.classList.remove('hide');
-				} else if(mui('#pullrefresh').pullRefresh().y > window.innerHeight * (-1) && !scrollToTopBox.classList.contains('hide')) {
-					scrollToTopBox.classList.add('hide');
-				}
-			});
-		}
+																		})
+																		// Android上监听原生滚动，iOS上监听div滚动，上拉超过一屏后显示按钮，否则隐藏，可自行在条件判断中修改  
+																		if(mui.os.android) {
+																			window.addEventListener('scroll', function(e) {
+																				if(window.pageYOffset >= window.innerHeight && scrollToTopBox.classList.contains('hide')) {
+																					scrollToTopBox.classList.remove('hide');
+																				} else if(window.pageYOffset < window.innerHeight && !scrollToTopBox.classList.contains('hide')) {
+																					scrollToTopBox.classList.add('hide');
+																				}
+																			});
+																		} else {
+																			document.getElementById('pullrefresh').addEventListener('scroll', function() {
+																				if(mui('#pullrefresh').pullRefresh().y <= window.innerHeight * (-1) && scrollToTopBox.classList.contains('hide')) {
+																					scrollToTopBox.classList.remove('hide');
+																				} else if(mui('#pullrefresh').pullRefresh().y > window.innerHeight * (-1) && !scrollToTopBox.classList.contains('hide')) {
+																					scrollToTopBox.classList.add('hide');
+																				}
+																			});
+																		}*/
 	</script>
 
 </html>

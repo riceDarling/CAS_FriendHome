@@ -181,7 +181,8 @@
 			"mui_shop.html",
 			"mui_communication.html",
 			"mui_help.html",
-			"login.html"
+			"login.html",
+			"news.html"
 		],
 		"refer": [
 			"news_mode_content.html",
@@ -194,7 +195,8 @@
 			"mui_shop.html",
 			"mui_communication.html",
 			"mui_help.html",
-			"login.html"
+			"login.html",
+			"news.html"
 		]
 	},
 	"service.html": {

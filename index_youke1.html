@@ -11,7 +11,7 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/common.css" />
 		<style type="text/css">
-			.mui-grid-view.mui-grid-9 .mui-table-view-cell>a:not(.mui-btn) {
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell>a:not(.mui-btn){
 				padding: 5px 0px 0px 0px;
 			}
 		</style>
@@ -215,7 +215,7 @@
 			$('#mui-indicator-z').on('tap', 'a', function() {
 
 				plus.navigator.setCookie('indexBtn', $(this).index());
-
+				plus.navigator.setCookie('muiMmoduleId', $(this).attr('mui-data-id'));
 				$("#mui-table-view-z").html('');
 				mui_module_id = $(this).attr('mui-data-id');
 				if(mui_module_id) {
@@ -228,12 +228,13 @@
 			});
 
 			var indexBtn2 = plus.navigator.getCookie('indexBtn');
-
+			var muiMmoduleId2 = plus.navigator.getCookie('muiMmoduleId');
 			if(indexBtn2 != null && indexBtn2 != undefined) {
 				$('#mui-indicator-z a').removeClass('mui-active');
 				$('#mui-indicator-z a').eq(indexBtn2).addClass('mui-active');
+				getArticleByModule_z(muiMmoduleId2);
 			}
-		})
+		});
 
 		function getArticleByModule_z(id) {
 			$.ajax({
@@ -276,10 +277,23 @@
 
 			});
 		}
-		getArticleByModule_z(mui_module_id);
+		//getArticleByModule_z(mui_module_id);
+		
+		$(window).scroll(function() {
+			if($(window).scrollTop() > 1) {
+				mui.toast('正在加载更多内容...');
+				setTimeout(function() {
+					var titleVal = $('#mui-indicator-z a.mui-active').text();
+					var textIndex = $('#mui-indicator-z a.mui-active').attr('mui-data-id')
+					location.href = "news_mode.html?" + $.trim(titleVal) + "&" + textIndex;
+				}, 1500);
+			};
+		});
+		
+		
 	</script>
 	<script type="text/javascript">
-		var scrollToTopBox = document.getElementById('scrollToTop');
+		/*var scrollToTopBox = document.getElementById('scrollToTop');
 
 		scrollToTopBox.addEventListener('tap', function(e) {
 			e.stopPropagation();
@@ -307,7 +321,7 @@
 					scrollToTopBox.classList.add('hide');
 				}
 			});
-		}
+		}*/
 	</script>
 
 </html>

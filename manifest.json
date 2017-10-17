@@ -121,7 +121,12 @@
 				"resources": [
 					"news.html",
 					"user.html",
-					"index.html"
+					"index.html",
+					"js/common.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/jquery-2.1.0.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -144,7 +149,8 @@
 					"mui_shop.html",
 					"mui_communication.html",
 					"mui_help.html",
-					"login.html"
+					"login.html",
+					"news.html"
 				],
 				"refer": [],
 				"priority": 0
