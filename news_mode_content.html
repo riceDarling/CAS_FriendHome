@@ -11,7 +11,7 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/common.css" />
 		<style type="text/css">
-			.news_content_lv{
+			.news_content_lv {
 				padding: 0;
 			}
 		</style>
@@ -101,23 +101,94 @@
 				if(data.msg == "成功") {
 					if(data.t.module == 7) {
 						var html = "";
-						html += "受助者账号：" + data.t.recipientAccount + "<br>";
-						html += "捐赠者账号：" + data.t.donorAccount + "<br>";
-						html += "捐赠者联系方式：" + data.t.donorContactWay + "<br>";
-						html += "捐赠物品名称：" + data.t.donationName + "<br>";
-						html += "捐赠物品数量：" + data.t.donationCount + "<br>";
-						html += "捐赠物品价值：" + data.t.donationValue + "<br>";
-						html += "捐赠物品金额：" + data.t.donationMoney + "<br>";
-						html += "捐赠物品总价值：" + data.t.donationTotalValue + "<br>";
-						html += "捐赠时间：" + data.t.donationTime + "<br>";
-						html += "备注：" + data.t.remark + "<br>";
+						if(data.t.recipientAccount == null || data.t.recipientAccount == undefined) {
+							html += "受助者账号：" + ' ' + "<br>";
+						} else {
+							html += "受助者账号：" + data.t.recipientAccount + "<br>";
+						}
+						if(data.t.donorAccount == null || data.t.donorAccount == undefined) {
+							html += "捐赠者账号：" + ' ' + "<br>";
+						} else {
+							html += "捐赠者账号：" + data.t.donorAccount + "<br>";
+						}
+						if(data.t.name == null || data.t.name == undefined) {
+							html += "捐赠者姓名：" + ' ' + "<br>";
+						} else {
+							html += "捐赠者姓名：" + data.t.name + "<br>";
+						}
+						if(data.t.donorContactWay == null || data.t.donorContactWay == undefined) {
+							html += "捐赠者联系方式：" + ' ' + "<br>";
+						} else {
+							html += "捐赠者联系方式：" + data.t.donorContactWay + "<br>";
+						}
+						if(data.t.donationName == null || data.t.donationName == undefined) {
+							html += "捐赠物品名称：" + ' ' + "<br>";
+						} else {
+							html += "捐赠物品名称：" + data.t.donationName + "<br>";
+						}
+						if(data.t.donationCount == null || data.t.donationCount == undefined) {
+							html += "捐赠物品数量：" + ' ' + "<br>";
+						} else {
+							html += "捐赠物品数量：" + data.t.donationCount + "<br>";
+						}
+						if(data.t.donationValue == null || data.t.donationValue == undefined) {
+							html += "捐赠物品价值：" + ' ' + "<br>";
+						} else {
+							html += "捐赠物品价值：" + data.t.donationValue + "<br>";
+						}
+						if(data.t.donationMoney == null || data.t.donationMoney == undefined) {
+							html += "捐赠物品金额：" + ' ' + "<br>";
+						} else {
+							html += "捐赠物品金额：" + data.t.donationMoney + "<br>";
+						}
+						if(data.t.donationTotalValue == null || data.t.donationTotalValue == undefined) {
+							html += "捐赠物品总价值：" + ' ' + "<br>";
+						} else {
+							html += "捐赠物品总价值：" + data.t.donationTotalValue + "<br>";
+						}
+						if(data.t.donationTime == null || data.t.donationTime == undefined) {
+							html += "捐赠时间：" + ' ' + "<br>";
+						} else {
+							html += "捐赠时间：" + data.t.donationTime + "<br>";
+						}
+						if(data.t.account == null || data.t.account == undefined) {
+							html += "发布者：" + ' ' + "<br>";
+						} else {
+							html += "发布者：" + data.t.account + "<br>";
+						}
+						if(data.t.remark == null || data.t.remark == undefined) {
+							html += "备注：" + +"<br>";
+						} else {
+							html += "备注：" + data.t.remark + "<br>";
+						}
 						$(".content_lv div[content_id=1] .width_ov_ss").append(html)
 					} else if(data.t.module == 6) {
 						var html = "";
-						html += "求助者账号：" + data.t.account + "<br>";
-						html += "求助者姓名：" + data.t.realName + "<br>";
-						html += "求助者电话：" + data.t.tel + "<br>";
-						html += "求助者地址：" + data.t.addr + "<br>";
+						if(data.t.account == null || data.t.account == undefined) {
+							html += "求助者账号：" + ' ' + "<br>";
+						} else {
+							html += "求助者账号：" + data.t.account + "<br>";
+						}
+						if(data.t.realName == null || data.t.realName == undefined) {
+							html += "求助者姓名：" + ' ' + "<br>";
+						} else {
+							html += "求助者姓名：" + data.t.realName + "<br>";
+						}
+						if(data.t.tel == null || data.t.tel == undefined) {
+							html += "求助者电话：" + ' ' + "<br>";
+						} else {
+							html += "求助者电话：" + data.t.tel + "<br>";
+						}
+						if(data.t.addr == null || data.t.addr == undefined) {
+							html += "求助者地址：" + ' ' + "<br>";
+						} else {
+							html += "求助者地址：" + data.t.addr + "<br>";
+						}
+						if(data.t.money == null || data.t.money == undefined) {
+							html += "目标金额：" + ' ' + "<br>";
+						} else {
+							html += "目标金额：" + data.t.money + "<br>";
+						}
 						html += "求助内容：";
 						$(".content_lv div[content_id=1] .width_ov_ss").append(html)
 					}
@@ -126,7 +197,7 @@
 					$(".content_lv div[content_id=1]").prepend('<div class="title_lv_a">' + data.t.title.replace(/script/ig, '*').replace(/style/ig, '*') + '</div>');
 					if(data.t.photos == "" || data.t.photos == null) {
 						if(data.t.content != "" || data.t.content != null) {
-							$(".content_lv div[content_id=1] .width_ov_ss").append(data.t.content.replace(/script/ig, '*').replace(/style/ig, '*').replace(/傻逼/ig, '*').replace(/傻狗/ig, '*').replace(/狗逼/ig, '*').replace(/傻逼/ig, '*').replace(/操你妈/ig, '*'));
+							$(".content_lv div[content_id=1] .width_ov_ss").append(data.t.content.replace(/script/ig, '*').replace(/傻逼/ig, '*').replace(/傻狗/ig, '*').replace(/狗逼/ig, '*').replace(/傻逼/ig, '*').replace(/操你妈/ig, '*'));
 						}
 					} else {
 						if(data.t.content != "" || data.t.content != null) {
