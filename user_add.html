@@ -321,66 +321,6 @@
 		})
 
 		function e_lv_fun(e) {
-			/*if(e == 0) {//患者
-				data = {
-					name: $(".ul_xinxi_lv li a:eq(0)").text().split("：")[1],
-					sex: sexsas,
-					birthTime: $(".ul_xinxi_lv li a:eq(2)").text().split("：")[1] + " 00:00:00",
-					addr: $(".ul_xinxi_lv li a:eq(5)").text().split("：")[1],
-					qq: $(".ul_xinxi_lv li a:eq(7)").text().split("：")[1],
-					wechat: $(".ul_xinxi_lv li a:eq(8)").text().split("：")[1],
-					workAddr: $(".ul_xinxi_lv li a:eq(9)").text().split("：")[1],
-					school: $(".ul_xinxi_lv li a:eq(10)").text().split("：")[1],
-					field: "",
-					sickness: $(".ul_xinxi_lv li a:eq(4)").text().split("：")[1],
-					education: "",
-					capital: "",
-					scope: "",
-					organization: "",
-					tel: $(".ul_xinxi_lv li a:eq(6)").text().split("：")[1],
-					idCard: $(".ul_xinxi_lv li a:eq(3)").text().split("：")[1],
-					photos: photos
-				}
-			} else if(e == 1) {//志愿者
-				data = {
-					name: $(".ul_xinxi_lv li a:eq(0)").text().split("：")[1],
-					sex: sexsas,
-					birthTime: $(".ul_xinxi_lv li a:eq(2)").text().split("：")[1] + " 00:00:00",
-					addr: $(".ul_xinxi_lv li a:eq(5)").text().split("：")[1],
-					qq: $(".ul_xinxi_lv li a:eq(7)").text().split("：")[1],
-					wechat: $(".ul_xinxi_lv li a:eq(8)").text().split("：")[1],
-					workAddr: $(".ul_xinxi_lv li a:eq(9)").text().split("：")[1],
-					school: $(".ul_xinxi_lv li a:eq(10)").text().split("：")[1],
-					field: $(".ul_xinxi_lv li a:eq(11)").text().split("：")[1],
-					sickness: "",
-					education: $(".ul_xinxi_lv li a:eq(4)").text().split("：")[1],
-					capital: "",
-					scope: "",
-					organization: "",
-					tel: $(".ul_xinxi_lv li a:eq(6)").text().split("：")[1],
-					idCard: $(".ul_xinxi_lv li a:eq(3)").text().split("：")[1],
-					photos: photos
-				}
-			} else {//其他(社会组织、其他)
-				data = {
-					name: $(".ul_xinxi_lv li a:eq(3)").text().split("：")[1],
-					sex: "",
-					birthTime: $(".ul_xinxi_lv li a:eq(1)").text().split("：")[1] + " 00:00:00",
-					addr: $(".ul_xinxi_lv li a:eq(2)").text().split("：")[1],
-					qq: "",
-					wechat: "",
-					workAddr: "",
-					school: "",
-					field: "",
-					sickness: "",
-					education: "",
-					capital: $(".ul_xinxi_lv li a:eq(4)").text().split("：")[1],
-					scope: $(".ul_xinxi_lv li a:eq(5)").text().split("：")[1],
-					organization: $(".ul_xinxi_lv li a:eq(0)").text().split("：")[1],
-					tel: $(".ul_xinxi_lv li a:eq(6)").text().split("：")[1],
-					photos: photos
-				}
-			}*/
 			if(e == 0) { //患者
 				data = {
 					name: $(".ul_xinxi_lv li a:eq(0)").text().split("：")[1],
@@ -403,9 +343,7 @@
 				}
 				if(data.name == '') {
 					alert('请填写姓名')
-				} else if(data.sex == '') {
-					alert('请填写性别')
-				} else if(data.birthTime == " 00:00:00") {
+				}  else if(data.birthTime == " 00:00:00") {
 					alert("请选择生日或注册时间！");
 				} else if(data.idCard == '') {
 					alert('请填写身份证')
@@ -468,8 +406,6 @@
 				}
 				if(data.name == '') {
 					alert('请填写姓名')
-				} else if(data.sex == '') {
-					alert('请填写性别')
 				} else if(data.birthTime == " 00:00:00") {
 					alert("请选择生日或注册时间！");
 				} else if(data.idCard == '') {
@@ -575,34 +511,6 @@
 		}
 		$("#reg").on("tap", function() {
 			e_lv_fun(a_lv_a)
-		/*	if(data.birthTime == " 00:00:00") {
-				alert("请选择生日或注册时间！");
-			} else if($(".mui-table-view li[src_id=1] img").attr("src")=="/img/help.png"){
-				alert("请在个人图片选项中上传您的证件照片，以便核实您的真实信息");
-			} else {
-				$.ajax({
-					type: "post",
-					url: config.url + "User/editUser",
-					async: true,
-					data: data,
-					xhrFields: {
-						withCredentials: true
-					},
-					crossDomain: true,
-					success: function(data) {
-						if(data.msg == "成功") {
-							mui.confirm('编辑成功！', '提示', ["确认"], function(e) {
-								if(e.index == 0) {
-									location.href = "user.html";
-								}
-							})
-						} else {
-							alert(data.msg)
-						}
-					}
-				});
-			}*/
-
 		})
 	</script>
 

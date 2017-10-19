@@ -213,10 +213,12 @@
 			"js/mui.min.js",
 			"css/mui.min.css",
 			"js/jquery-2.1.0.js",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"shopsearch.html"
 		],
 		"refer": [
-			"shop.html"
+			"shop.html",
+			"shopsearch.html"
 		]
 	},
 	"login.html": {
@@ -330,9 +332,12 @@
 			"js/mui.min.js",
 			"fonts/mui.ttf",
 			"css/mui.min.css",
-			"js/jquery-2.1.0.js"
+			"js/jquery-2.1.0.js",
+			"shopsearch.html"
 		],
-		"refer": []
+		"refer": [
+			"shopsearch.html"
+		]
 	},
 	"news_mode_content2.html": {
 		"resources": [
@@ -629,10 +634,14 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"js/jquery-2.1.0.js",
-			"shop.html"
+			"shop.html",
+			"service.html",
+			"shopsa.html"
 		],
 		"refer": [
-			"shop.html"
+			"shop.html",
+			"service.html",
+			"shopsa.html"
 		]
 	}
 }

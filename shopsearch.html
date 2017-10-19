@@ -15,8 +15,7 @@
 	<body>
 		<header id="header" class="mui-bar mui-bar-nav background_lv">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;margin-right: 6px;"></a>
-			<input type="text" placeholder="请输入搜索内容..." style="height: 32px; margin-top: 6px; width: 75%;" />
-			<a class="mui-icon mui-icon mui-icon-search mui-pull-right" style="color: #fff;"></a>
+
 		</header>
 		<!--
         	作者：1823228253@qq.com
@@ -24,21 +23,83 @@
         	描述：
        -->
 		<div class="mui-content_lv">
+			<select id="muitypeVal" name="" style="width: 25%;float: left;margin-left:5px;margin-right: 2px;margin-top: 8px;">
+			</select>
+			<select id="muiCategoryVal" name="" style="width: 25%;float: left;margin-right: 2px;margin-top: 8px;">
+			</select>
+			<input type="text" id="shopName" placeholder="请输入..." style="width:30%;height:41px;border:none;margin-top: 9px;" />
+			<button type="button" id="muisearchbtn" class="mui-btn mui-btn-blue" style="padding: 9px 12px;margin-top: 10px;">搜索</button>
 			<ul class="mui-table-view">
 
 			</ul>
 		</div>
 	</body>
 	<script>
-		$(document).on("tap", "#header .mui-pull-right", function() {
-			var title = $("#header input").val();
+		$.ajax({
+			type: "post",
+			url: config.url + "shoppingMall/getALLTypes",
+			async: true,
+			xhrFields: {
+				withCredentials: true
+			},
+			crossDomain: true,
+			success: function(data) {
+				if(data.msg == "成功") {
+					var html = "";
+					html += '<option value="">请选择</option>';
+					for(i = 0; i < data.t.length; i++) {
+						html += '<option value="' + data.t[i].type + '">' + data.t[i].type + '</option>'
+					}
+					$("#muitypeVal").html(html);
+				}
+			}
+		});
+
+		function getALLCategorys(obj) {
 			$.ajax({
 				type: "post",
-				url: config.url + "shoppingMall/getStoreByType",
+				url: config.url + "shoppingMall/getALLCategorys",
+				data: {
+					type: obj
+				},
+				async: true,
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: function(data) {
+					if(data.msg == "成功") {
+						var html = "";
+						html += '<option value="">请选择</option>';
+						for(i = 0; i < data.t.length; i++) {
+							html += '<option value="' + data.t[i].category + '">' + data.t[i].category + '</option>';
+						}
+						$("#muiCategoryVal").html(html);
+					}
+				}
+			});
+		};
+		getALLCategorys();
+
+		$(document).ready(function() {
+			$('#muitypeVal').on('change', function() {
+				var typeVal2 = $("#muitypeVal option:selected").val();
+				getALLCategorys(typeVal2);
+			})
+		})
+
+		$(document).on("tap", "#muisearchbtn", function() {
+			var typeVal = $("#muitypeVal option:selected").val();
+			var categoryVal = $("#muiCategoryVal option:selected").val()
+			var title = $("#shopName").val();
+			$.ajax({
+				type: "post",
+				url: config.url + "shoppingMall/getStoreByName",
 				async: true,
 				data: {
-					"type": '衣服',
-					"category ":'衬衫'
+					type: typeVal,
+					category: categoryVal,
+					name: title,
 				},
 				xhrFields: {
 					withCredentials: true
@@ -46,6 +107,7 @@
 				crossDomain: true,
 				success: function(data) {
 					if(data.msg == "成功") {
+						$('.mui-table-view li').remove();
 						var html = "";
 						for(i = 0; i < data.t.length; i++) {
 							html += '<li class="mui-table-view-cell mui-media">'
@@ -64,7 +126,7 @@
 				}
 			});
 		});
-		
+
 		//页面跳转
 		$(document).on("tap", "a[href_lv_a]", function() {
 			location.href = "shopsa.html?" + $(this).attr("href_lv_a");
