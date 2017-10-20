@@ -1,10 +1,10 @@
 var config = {
-	//url: "http://123.56.221.46:8080/FriendHome/"
-	url: "http://192.168.3.4:8080/FriendHome/"
+	url: "http://123.56.221.46:8080/FriendHome/"
+	//url: "http://192.168.3.4:8080/FriendHome/"
 }
 var config2 = {
-	//url: "http://123.56.221.46:8080/"
-	url: "http://192.168.3.4:8080/"
+	//url: "http://192.168.3.4:8080/"
+	url: "http://123.56.221.46:8080/"
 }
 //var config2 = {  
 //	url: "http://60.205.151.97:8080/"

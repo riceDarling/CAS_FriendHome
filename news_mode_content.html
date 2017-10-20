@@ -157,10 +157,10 @@
 						} else {
 							html += "捐赠时间：" + data.t.donationTime + "<br>";
 						}
-						if(data.t.account == null || data.t.account == undefined) {
+						if(data.t.postname == null || data.t.postname == undefined) {
 							html += "发布者：" + ' ' + "<br>";
 						} else {
-							html += "发布者：" + data.t.account + "<br>";
+							html += "发布者：" + data.t.postname + "<br>";
 						}
 						if(data.t.remark == null || data.t.remark == undefined) {
 							html += "备注：" + +"<br>";
@@ -363,5 +363,4 @@
 			}
 		})
 	</script>
-
 </html>
